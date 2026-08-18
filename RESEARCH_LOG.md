@@ -910,3 +910,15 @@ visually checked; fig6 corrected mid-review to show the effect-conditioned
 positive control (raw unconditioned number would have contradicted the
 logged verdict; conditioned diagnostic persisted to
 results/gateweek_g1/effect_conditioned.json).
+
+## [2026-08-19 07:10] EXPERIMENTALIST — January arrived; conversion gate PASSED
+
+File verified (744 timesteps, byte-size matches July's 31-day layout).
+Sanity gate (pre-registered 04:00): converted R2 on 4 sampled timesteps —
+M3 0.394-0.416 (>= 0.25 required), M1 0.210-0.239 (>= 0.10 required). PASS.
+REFINEMENT of the normalization discovery: January's stored constants are
+IDENTICAL to July's — the WxC monthly files share ONE alternative convention
+(not per-month empirical constants as first hypothesized). Simplifies the
+community advisory: a single conversion handles all WxC nonlocal_
+parameterization files. January skill runs higher than July (NH winter).
+Launching J1 (full-month eval); J2-J4 follow sequentially.

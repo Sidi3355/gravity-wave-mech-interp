@@ -1,0 +1,46 @@
+{
+  "stamp": {
+    "config_hash": "6be747eae2d6",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T23:13:36+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling01.nc"
+  },
+  "gate": "January conversion sanity",
+  "passed": true,
+  "r2_m1": [
+    0.233,
+    0.21,
+    0.239,
+    0.231
+  ],
+  "r2_m3": [
+    0.416,
+    0.394,
+    0.416,
+    0.408
+  ],
+  "january_constants": {
+    "u": [
+      15.419851393222734,
+      6.396170418818774
+    ],
+    "v": [
+      5.358575903391334,
+      0.020325419770554964
+    ],
+    "uw": [
+      0.01210256860332131,
+      -0.0005111427058698139
+    ],
+    "vw": [
+      0.009992852935673705,
+      -0.00029947280540184554
+    ]
+  }
+}

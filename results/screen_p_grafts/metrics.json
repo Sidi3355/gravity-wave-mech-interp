@@ -1,0 +1,48 @@
+{
+  "stamp": {
+    "config_hash": "b01ca9376241",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T21:00:47+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "p1_columns": 300,
+    "p2_columns": 40,
+    "p3_columns": 200
+  },
+  "p1": {
+    "hypothesis": "H-P1",
+    "median_suppression_above": -0.007192492485046387,
+    "iqr": [
+      -0.2405078411102295,
+      0.25652486085891724
+    ],
+    "median_below_change": 0.2027876377105713,
+    "n_admissible": 277,
+    "n_ood_excluded": 23,
+    "verdict": "KILL"
+  },
+  "p2": {
+    "hypothesis": "H-P2",
+    "circular_alignment": 0.21987939904946247,
+    "n_admissible": 135,
+    "n_ood_excluded": 145,
+    "mean_abs_angle_error_deg": 76.73242959622984,
+    "verdict": "KILL"
+  },
+  "p3": {
+    "hypothesis": "H-P3",
+    "median_spearman": 0.48571428571428577,
+    "frac_perfectly_monotone": 0.25925925925925924,
+    "n_admissible": 162,
+    "n_ood_excluded": 38,
+    "verdict": "KILL"
+  },
+  "ood_rule": "max per-channel |z| vs July column stats > 4"
+}

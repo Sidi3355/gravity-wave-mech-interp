@@ -42,14 +42,14 @@ input outside radius r around a target column degrades skill for r >> 1.
 
 ## B-REPR — what is represented
 
-**H-R1** [GEN] (T1) Derived stability quantities (N^2, Richardson number)
+**H-R1** [SCREEN-KILL 2026-08-18: negative selectivity at all depths] (T1) Derived stability quantities (N^2, Richardson number)
 become linearly decodable with increasing selectivity across M1/M2 depth.
 - Cheapest: linear probes per layer on ~50k columns; controls = random-init
   net + probes on raw inputs (N^2, Ri are nonlinear in theta, u profiles).
 - Kill: selectivity (real minus controls) ~ 0 or non-monotone noise.
 - Payoff: networks compute textbook GW intermediates.
 
-**H-R2** [GEN] (T1) M3 internally reconstructs the orography it never receives:
+**H-R2** [SCREEN-KILL 2026-08-18: encoder discards orography; selectivity -0.39] (T1) M3 internally reconstructs the orography it never receives:
 zs is decodable from M3 encoder activations well above the raw-input baseline.
 - Cheapest: linear probe for zs at 2 encoder depths vs same probe on inputs;
   natural control: M1 (receives zs directly).
@@ -57,7 +57,7 @@ zs is decodable from M3 encoder activations well above the raw-input baseline.
 - Payoff: surrogate infers boundary forcing from flow state — plus a clean
   natural experiment M1-with-zs vs M3-without.
 
-**H-R3** [GEN] (T1) Source-regime coding is abstract, not geographic:
+**H-R3** [SCREEN-PASS 2026-08-18: cross-region AUC 0.72 vs 0.40 control] (T1) Source-regime coding is abstract, not geographic:
 orographic-vs-nonorographic separability transfers across disjoint regions.
 - Cheapest: probe trained Andes-vs-WPac, tested Himalaya-vs-storm-track
   (paper's 8 boxes as labels); selectivity vs random-init control.
@@ -74,14 +74,14 @@ coherent activation maps (mountain wakes, jet exits, convective clusters).
 - Kill: features dense, dashboards incoherent at all tested sparsities.
 - Payoff: first feature dictionary for a parameterization emulator.
 
-**H-R5** [GEN] (T1) Flux SIGN and MAGNITUDE are computed separably: sign is
+**H-R5** [SCREEN-KILL 2026-08-18: sign selectivity ~0 everywhere] (T1) Flux SIGN and MAGNITUDE are computed separably: sign is
 decodable earlier in depth than magnitude bins.
 - Cheapest: per-layer probes for sign(uw) and |uw| quantile bins at 3 levels.
 - Kill: identical decodability profiles.
 - Payoff: computational decomposition of the prediction (filtering vs
   amplitude), guides where to patch in Stage D.
 
-**H-R6** [GEN] (T8) The flux estimate crystallizes late: a linear "flux lens"
+**H-R6** [SCREEN-PASS 2026-08-18: act1 collapse then late crystallization, act6=88% of full skill] (T8) The flux estimate crystallizes late: a linear "flux lens"
 readout per layer shows a sharp skill jump in the last two MLP layers.
 - Cheapest: ridge readouts per layer on ~50k columns.
 - Kill: skill accrues gradually/linearly with depth.
@@ -208,7 +208,7 @@ least — and this, not mean error, drives the Hellinger ordering.
 
 ## B-PHYS — controlled-input physics tests (T7; generators A5-gated)
 
-**H-P1** [GEN] (T7) Critical-level filtering is learned: directional wind
+**H-P1** [SCREEN-KILL 2026-08-18: zero suppression above grafted reversal] (T7) Critical-level filtering is learned: directional wind
 reversal at z_c suppresses predicted flux above z_c relative to matched
 no-reversal profiles.
 - Cheapest: paired synthetic columns through M1 (then M2/M3 with uniform
@@ -218,7 +218,7 @@ no-reversal profiles.
   (a trust-critical negative with publication value either way; dual-outcome
   but with a directional physical prior, unlike H-F1).
 
-**H-P2** [GEN] (T7) Orographic source response rotates with low-level wind:
+**H-P2** [SCREEN-KILL 2026-08-18: drag does not rotate with wind, err 77deg] (T7) Orographic source response rotates with low-level wind:
 rotating the forcing wind rotates the predicted surface-flux vector
 accordingly (drag opposes surface wind) over an idealized ridge (M1/M2, which
 receive zs).
@@ -226,7 +226,7 @@ receive zs).
 - Kill: no coherent rotation.
 - Payoff: physically consistent source encoding; feeds H-N5 target selection.
 
-**H-P3** [GEN] (T7) Response amplitude scales physically in-distribution and
+**H-P3** [SCREEN-KILL 2026-08-18: median Spearman 0.49] (T7) Response amplitude scales physically in-distribution and
 saturates/breaks out-of-distribution: flux vs forcing amplitude is monotone
 (superlinear) within training range, degrading beyond it.
 - Cheapest: amplitude sweep on synthetic columns, 3 profile families.

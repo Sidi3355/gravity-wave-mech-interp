@@ -1,0 +1,6 @@
+seed: 0
+source_file: "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc"
+n_timesteps: 24
+p1_columns: 300
+p2_columns: 40
+p3_columns: 200

@@ -520,3 +520,51 @@ FUNNEL: 15/30 screened. PASS: N1, I2, N3, P4, A5, F3, I4 (7). KILL: A1, A2,
 F2, N2, I1, A4, N5 (7). MEASURED: F1, C-5. Remaining before CHECKPOINT_C:
 R-family probes (R1, R2, R3, R5, R6), SAE gate (R4), T7 grafts (P1-P3), I3;
 deferred: A3, N4, A2b (January), L1a/L2 (asset check).
+
+## [2026-08-18 22:40] EXPERIMENTALIST + LEAD — Probe wave + physics block complete
+
+R-family (results/probes_m1, probes_m3):
+- H-R1 SCREEN-KILL (decisive): selectivity of N2/Ri probes is NEGATIVE at
+  every depth (raw inputs decode them better than any hidden layer; e.g. N2
+  selectivity -0.17..-1.09). M1 does not maintain linearly-readable textbook
+  intermediates; depth progressively discards them.
+- H-R5 SCREEN-KILL: sign selectivity ~0 at all depths (<=0.02); depth-gap
+  criterion inconsistent across levels (+3/-3/-2). No sign-vs-magnitude
+  separation.
+- H-R6 SCREEN-PASS: flux-lens profile input 0.074 -> act1 -0.085 (!) ->
+  monotone recovery -> act6 0.175 (~88% of full-model R2 0.19 vs act5 63%).
+  Two-phase story: layer 1 de-linearizes; flux crystallizes in the last
+  hidden layer — consistent with last-2-layer transfer-learning sufficiency.
+- H-R2 SCREEN-KILL (decisive): zs from M3 conv1: R2 0.06 vs input baseline
+  0.45 (selectivity -0.39; even random-init gets 0.08). M3's encoder DISCARDS
+  linearly-readable orography. Roll arm: what little zs info exists is
+  flow-derived (R2 0.14 vs source geography) not position-derived (-0.03) at
+  conv1. The "network reconstructs orography" story is dead at this depth.
+- H-R3 SCREEN-PASS (after control fix, logged): cross-region orog-vs-nonorog
+  AUC 0.72 (real) vs 0.40 (randinit; actively misled) vs shuffled range
+  [0.17, 0.54]. Within-region AUC ~0.95 even for random features (covariate
+  shift) — cross-region transfer is the meaningful number. Control bug found
+  and fixed before acceptance: original within-region split was ordered (not
+  stratified); shuffled control now 5-fold with range reported.
+
+B-PHYS block (results/screen_p_grafts) — ALL KILLED; collectively the
+strongest trust-relevant negative of the program (graft admissibility
+enforced, max |z| <= 4 vs July stats; exclusions reported):
+- H-P1 KILL: median flux suppression above a grafted directional wind
+  reversal = -0.007 (IQR -0.24..+0.26; n=277 admissible). NO critical-level
+  filtering response. Median |below-graft| change 20% despite the graft only
+  touching levels above — an additional locality oddity.
+- H-P2 KILL: drag-vector rotation does not track wind rotation over Andes
+  columns (circular alignment 0.22; mean angle error 77deg ~ random; n=135
+  admissible, 145 OOD-excluded mostly at large angles where rotated v exceeds
+  its climatological envelope — caveat logged).
+- H-P3 KILL: amplitude response non-monotone (median Spearman 0.49; only 26%
+  of columns monotone).
+Reading: the models earn offline skill as REGIME PATTERN-MATCHERS without
+encoding causal GW physics (filtering, drag-wind alignment, amplitude
+scaling). Publication value: trust audit for ML parameterizations.
+
+FUNNEL: 23/30 resolved. PASS: N1, I2, N3, P4, A5, F3, I4, R3, R6 (9).
+KILL: A1, A2, F2, N2, I1, A4, N5, R1, R2, R5, P1, P2, P3 (13).
+MEASURED: F1, C-5. Remaining: I3, R4 (running next); deferred: A3, N4,
+A2b (Jan), L1a/L2 (assets). Then CHECKPOINT_C.

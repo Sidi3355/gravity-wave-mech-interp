@@ -1,0 +1,55 @@
+{
+  "stamp": {
+    "config_hash": "140df7e73303",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:59:07+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 12,
+    "roll": 32
+  },
+  "r2": {
+    "verdict": "KILL",
+    "r2_eval": {
+      "real": 0.0598,
+      "randinit": 0.0832,
+      "input": 0.4465
+    },
+    "selectivity_over_baselines": -0.3867,
+    "roll_arm": {
+      "r2_vs_source_geography": 0.1362,
+      "r2_vs_map_position": -0.0309,
+      "reading": "source >> position = flow-derived; position >> source = padding position code"
+    }
+  },
+  "r3": {
+    "verdict": "PASS",
+    "real": {
+      "cross_region_auc": 0.7203491007775046,
+      "within_region_auc": 0.9320607611600683,
+      "shuffled_auc_mean": 0.40247845095262924,
+      "shuffled_auc_range": [
+        0.17269589760786944,
+        0.5357041943016121
+      ]
+    },
+    "randinit": {
+      "cross_region_auc": 0.3956377151799687,
+      "within_region_auc": 0.9641890473299249,
+      "shuffled_auc_mean": 0.4353278622351392,
+      "shuffled_auc_range": [
+        0.31150095014531637,
+        0.5293986139056561
+      ]
+    },
+    "geographic_only_flag": false
+  },
+  "n_timesteps": 12,
+  "spatial_split": "train lon cols [0,32)+[64,96), eval rest"
+}

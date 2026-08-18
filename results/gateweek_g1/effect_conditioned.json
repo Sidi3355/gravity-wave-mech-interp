@@ -1,0 +1,23 @@
+{
+  "stamp": {
+    "config_hash": "d641883871fc",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T22:46:06+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "threshold": 0.1
+  },
+  "conditioning": "relative true effect >= 0.10 (amendment RESEARCH_LOG 2026-08-19 01:35)",
+  "n_conditioned": 56,
+  "median_corr_conditioned": 0.7471980836204468,
+  "iqr_conditioned": [
+    0.09729393079176364,
+    0.8349336331724696
+  ],
+  "median_corr_unconditioned": 0.06049912178549577,
+  "corr_effectsize_vs_agreement": 0.9315027979419458
+}

@@ -1,0 +1,7 @@
+# H-P4: longitude seam artifact + C-4 latitude twin. July 2015.
+seed: 0
+source_file: "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc"
+month_artifacts: "results/a4_fullmonth/arrays/fullmonth_artifacts.npz"
+n_timesteps: 24
+roll_cells: 64
+out_dir: "results/screen_p4_seam"

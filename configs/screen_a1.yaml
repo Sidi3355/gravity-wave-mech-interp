@@ -1,0 +1,7 @@
+# H-A1: linear stencil ridge vs M1/M2 gap. July 2015 screening month.
+seed: 0
+source_file: "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc"
+n_timesteps: 24
+cols_per_timestep: 4096
+lambda_grid: [0.01, 1.0, 100.0, 10000.0]
+out_dir: "results/screen_a1_ridge"

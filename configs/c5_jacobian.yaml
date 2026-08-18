@@ -1,0 +1,7 @@
+# C-5: M1 vertical input-Jacobian calibration (descriptive control). July 2015.
+seed: 0
+source_file: "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc"
+n_timesteps: 6
+cols_per_timestep: 256
+output_levels: [20, 60, 100]
+out_dir: "results/c5_jacobian"

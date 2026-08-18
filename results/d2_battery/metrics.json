@@ -1,0 +1,110 @@
+{
+  "stamp": {
+    "config_hash": "d09253499757",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T22:24:56+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "zc": 60
+  },
+  "arm1_m1_uvtheta_july": {
+    "median_suppression": -0.008282780647277832,
+    "iqr": [
+      -0.24886083602905273,
+      0.2563325762748718
+    ],
+    "median_beta": 1.0,
+    "n_admissible": 289,
+    "n_ood": 11
+  },
+  "arm2_m1_uvthetaw_aug": {
+    "median_suppression": 0.04318830370903015,
+    "iqr": [
+      -0.07359543442726135,
+      0.30462411046028137
+    ],
+    "median_beta": 1.0,
+    "n_admissible": 284,
+    "n_ood": 16
+  },
+  "arm4_p3_uvthetaw_aug": {
+    "median_spearman": 0.48571428571428577,
+    "n_admissible": 136,
+    "n_ood": 64
+  },
+  "arm3_m3_patchgraft": {
+    "median_suppression": 0.1459721028804779,
+    "iqr": [
+      0.09657876193523407,
+      0.19461284577846527
+    ],
+    "n_patches": 10,
+    "n_skipped_ood": 10,
+    "rows": [
+      {
+        "box": "1andes",
+        "t": 247,
+        "beta": 1.0,
+        "suppression": 0.2870559096336365
+      },
+      {
+        "box": "5south_ocn",
+        "t": 0,
+        "beta": 1.0,
+        "suppression": -1.781984567642212
+      },
+      {
+        "box": "7natlantic",
+        "t": 0,
+        "beta": 1.0,
+        "suppression": 0.18714803457260132
+      },
+      {
+        "box": "7natlantic",
+        "t": 247,
+        "beta": 1.0,
+        "suppression": 0.19710111618041992
+      },
+      {
+        "box": "7natlantic",
+        "t": 495,
+        "beta": 1.0,
+        "suppression": 0.049088120460510254
+      },
+      {
+        "box": "7natlantic",
+        "t": 743,
+        "beta": 1.0,
+        "suppression": 0.315925657749176
+      },
+      {
+        "box": "8npacific",
+        "t": 0,
+        "beta": 0.95,
+        "suppression": 0.08805578947067261
+      },
+      {
+        "box": "8npacific",
+        "t": 247,
+        "beta": 1.0,
+        "suppression": 0.1358010172843933
+      },
+      {
+        "box": "8npacific",
+        "t": 495,
+        "beta": 1.0,
+        "suppression": 0.1561431884765625
+      },
+      {
+        "box": "8npacific",
+        "t": 743,
+        "beta": 1.0,
+        "suppression": 0.12214767932891846
+      }
+    ]
+  }
+}

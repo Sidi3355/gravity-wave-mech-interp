@@ -816,3 +816,34 @@ D2-B GRAFT BATTERY, arms runnable pre-January:
    criticism with an in-distribution-shaped M3 test.
 4. P3' amplitude battery on M1-uvthetaw (snapshots) — robustness of the
    non-monotonicity result.
+
+## [2026-08-19 02:45] EXPERIMENTALIST — D1-A and D2-B (pre-January arms) complete
+
+D1-A ROLL-ENSEMBLE (results/d1_rollensemble/): position shares of M3
+calibration — variance 62%, P99.9 37%, P99 17%, P90 2.5%. The position code
+specifically injects EXTREME-TAIL variance; bulk calibration is flow-driven.
+Roll-distance curve symmetric (0.54 at roll 8 -> 0.33 at half-domain -> 0.56
+at roll 120): clean position-dependence signature, artifact-free. Regionally,
+the position-keyed variance boost concentrates at hotspots (base 1.29 vs
+1.02 elsewhere; rolled 0.24 vs 0.37): M3 injects variance where it KNOWS
+orography/storm tracks live. D1's mechanism statement (draft): "M3
+implements tail calibration largely as a position-indexed variance prior,
+strongest over climatological hotspots."
+
+D2-B (results/d2_battery/):
+- arm1 M1-uvtheta July partial-graft: median suppression -0.008 (n=289) —
+  P1's null replicates under the G1-mirrored protocol on a new month.
+- arm2 M1-uvthetaw August: +0.043 (n=284) — null robust across CHECKPOINT
+  and INPUT VARIANT.
+- arm4 P3' uvthetaw: median Spearman 0.486 (n=136) — non-monotonicity
+  replicates across variant (uvtheta was 0.49).
+- arm3 M3 patch graft: median suppression +0.146 (IQR 0.10-0.19, n=10
+  patches, 10 skipped OOD) — SMALL but consistent correct-direction response
+  in M3 where M1 has none. Preliminary (n=10); January arm (J3) will expand
+  patches and regions. If it holds: the nonlocal model carries a weak trace
+  of filtering-like response — nuances the audit from "no physics anywhere"
+  to "no physics in column models; faint traces in the U-Net, still far
+  below physical expectation". Honesty: patch grafts also shift regime
+  statistics; attribution needs the January dose-response (beta sweep).
+
+WRITER activates: PAPER_DRAFT.md skeleton next.

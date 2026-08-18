@@ -27,6 +27,7 @@ import xarray as xr
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src import utils
+from src.data import normalization as nz
 from src.data.neighborhoods import columns_3x3
 from src.models.anchor_loader import feature_slice, load_model
 
@@ -48,6 +49,7 @@ def main():
     n = ds.sizes["time"]
     t_idx = np.unique(np.linspace(0, n - 1, CFG["n_timesteps"]).astype(int))
 
+    src_conv = nz.detect_source_convention(ds)
     m1 = load_model("m1", "uvtheta", "global")
     m2 = load_model("m2", "uvtheta", "global")
     sl = feature_slice("m1", "uvtheta", "global")  # same slice for m2
@@ -59,8 +61,12 @@ def main():
     per_t = {k: [] for k in sse}
 
     for t in t_idx:
-        g = ds["features"][t].values.astype(np.float32)[sl]     # (369, 64, 128)
+        g = ds["features"][t].values.astype(np.float32)
         truth = ds["output"][t].values.astype(np.float32)
+        if src_conv is not None:
+            g = nz.convert_inputs_to_model(g, src_conv)
+            truth = nz.convert_outputs_to_model(truth, src_conv)
+        g = g[sl]
         true_cols = truth.transpose(1, 2, 0).reshape(-1, 244)
 
         cols = g.transpose(1, 2, 0).reshape(-1, 369)            # (8192, 369)

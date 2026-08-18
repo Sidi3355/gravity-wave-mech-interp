@@ -27,6 +27,7 @@ import xarray as xr
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src import utils
+from src.data import normalization as nz
 from src.data.neighborhoods import columns_3x3
 from src.models.anchor_loader import feature_slice, load_model
 
@@ -150,17 +151,14 @@ def main():
 
     ds = xr.open_dataset(CFG["month_file"])
     n_time = ds.sizes["time"]
-    consts = parse_norm_constants(ds["output"].attrs["long_name"])
-    # Cross-file comparability gate (critic S6b): normalization constants must
-    # equal the ones in the released Aug-2015 snapshots, else all cross-file
-    # metrics are incomparable and the run must not proceed.
-    EXPECTED = {"uw": (-0.0005112474139891424, 0.0050768547492663395),
-                "vw": (-0.0002982954242187403, 0.003792741148955207)}
-    for v, (mu, sig) in EXPECTED.items():
-        got = consts[v]
-        if abs(got[0] - mu) > 1e-15 or abs(got[1] - sig) > 1e-15:
-            raise RuntimeError(f"normalization constants for {v} differ from "
-                               f"snapshot files: {got} vs {(mu, sig)}")
+    # Cross-file comparability gate (critic S6b, upgraded after the WxC-Bench
+    # per-month scaling discovery): detect the file's convention and convert
+    # every timestep to the model convention. Raises on unknown conventions.
+    src_conv = nz.detect_source_convention(ds)
+    print(f"source convention: {'model-native' if src_conv is None else 'WxC per-month (converting)'}",
+          flush=True)
+    consts = {"uw": (nz.MODEL_CONVENTION["uw"][1], nz.MODEL_CONVENTION["uw"][0]),
+              "vw": (nz.MODEL_CONVENTION["vw"][1], nz.MODEL_CONVENTION["vw"][0])}
     edges = np.linspace(-CFG["hist_range"], CFG["hist_range"], CFG["hist_bins"] + 1)
     # Approx Gaussian-quadrature area weights ~ cos(lat), normalized to mean 1,
     # broadcast to the (8192,) column vector (lat-major reshape order).
@@ -197,6 +195,9 @@ def main():
     for t in range(t0, n_time):
         g = ds["features"][t].values.astype(np.float32)      # (idim, 64, 128)
         truth = ds["output"][t].values.astype(np.float32)    # (244, 64, 128)
+        if src_conv is not None:
+            g = nz.convert_inputs_to_model(g, src_conv)
+            truth = nz.convert_outputs_to_model(truth, src_conv)
         true_cols = truth.transpose(1, 2, 0).reshape(-1, 244)
         true_phys = to_physical(true_cols, consts)
 

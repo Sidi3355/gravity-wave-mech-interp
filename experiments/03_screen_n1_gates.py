@@ -23,6 +23,7 @@ import xarray as xr
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src import utils
+from src.data import normalization as nz
 from src.interp import hooks
 from src.models.anchor.model_definition import Attention_UNet
 from src.models.anchor_loader import feature_slice, load_model
@@ -32,10 +33,13 @@ CFG = utils.load_config(os.environ.get("CFG", REPO / "configs" / "screen_n1.yaml
 GATES = ["attn2.Psi", "attn3.Psi", "attn4.Psi", "attn5.Psi"]
 
 
-def gate_stats(model, ds, sl, t_idx):
+def gate_stats(model, ds, sl, t_idx, src_conv):
     alphas = {g: [] for g in GATES}
     for t in t_idx:
-        x = torch.from_numpy(ds["features"][t].values.astype(np.float32)[sl])[None]
+        f = ds["features"][t].values.astype(np.float32)
+        if src_conv is not None:
+            f = nz.convert_inputs_to_model(f, src_conv)
+        x = torch.from_numpy(f[sl])[None]
         acts = hooks.capture_unet_maps(model, x, sites=GATES)
         for g in GATES:
             alphas[g].append(acts[g][0, 0].numpy())
@@ -57,13 +61,14 @@ def main():
     n = ds.sizes["time"]
     t_idx = np.unique(np.linspace(0, n - 1, CFG["n_timesteps"]).astype(int))
     sl = feature_slice("m3", "uvtheta", "global")
+    src_conv = nz.detect_source_convention(ds)
 
     real = load_model("m3", "uvtheta", "global")
     torch.manual_seed(CFG["seed"])
     control = Attention_UNet(ch_in=366, ch_out=244, dropout=0.0).eval()
 
-    stats_real, alphas_real = gate_stats(real, ds, sl, t_idx)
-    stats_ctrl, _ = gate_stats(control, ds, sl, t_idx)
+    stats_real, alphas_real = gate_stats(real, ds, sl, t_idx, src_conv)
+    stats_ctrl, _ = gate_stats(control, ds, sl, t_idx, src_conv)
 
     finest = "attn2.Psi"
     r_spatial = stats_real[finest]["spatial_std"] / max(stats_ctrl[finest]["spatial_std"], 1e-9)

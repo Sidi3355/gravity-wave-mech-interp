@@ -285,3 +285,42 @@ against Pahlavan-style ERF prior art (C-5).
 
 Verdict: table amended, 27 active + 2 deferred-pending-assets + 2 deferred;
 Stage C may begin once the July artifacts run completes.
+
+## [2026-08-18 20:05] DATA ENGINEER — DISCOVERY: WxC-Bench monthly files are not
+## checkpoint-compatible as stored; exact conversion built and validated
+
+The critic-mandated constants gate fired on the July 2015 month file. Forensics:
+1. The released checkpoints expect ONE fixed normalization convention — that of
+   the author's HF test files: u,v mu-sigma scaled with a 3x factor
+   (u: (u-6.3955)/66.527), theta/1000, fluxes cube-root scaled with global
+   constants (uw sigma 0.005077).
+2. The WxC-Bench nonlocal_parameterization 2015 monthly files use PER-MONTH
+   constants AND a 1x-sigma u/v convention, despite attribute text still
+   claiming "3x<sigma>" and "[-2,2]" (July u_norm std is 1.35, not ~0.33).
+   Outputs use per-month sigmas with honest labels (verified via the
+   adjacent-hour test: July hour 5088 vs Aug snapshot hour 5089 are
+   consecutive; converted slopes/std-ratios ~1).
+3. Feeding July data as-is: R2 of -57..-81 (M1), -4.1..-4.4 (M3). After exact
+   affine conversion to the model convention: M1 R2 ~ 0.17, M3 R2 ~ 0.38 —
+   matching the Aug-snapshot baseline. Conversion is exact (float64 to ~1e-9;
+   float32 storage floors near-zero cube-root values at ~1e-4 normalized
+   = ~5e-15 Pa, negligible).
+COMMUNITY-RELEVANT: anyone evaluating the HF checkpoints on WxC-Bench monthly
+files without this conversion gets garbage. Candidate for a data note /
+upstream issue after the paper.
+
+Implementation: src/data/normalization.py (constants registry, convention
+detector that fails loud on unknown files, exact converters);
+tests/test_normalization.py (4 tests: registry parse, roundtrip exactness,
+adjacent-hour physical consistency, zs channel identity across files).
+All experiments (02/03/04) auto-detect and convert. Suite 39/39 green.
+
+Also CONFIRMED from the released training script (era5_training/training.py):
+train years = 2010, 2012, 2014 (all 12 months each); test years = 2015 (all
+months). So July 2015 and January 2015 are both legitimately held out, with
+the standard caveat that released checkpoint epochs were presumably selected
+on 2015 validation loss. utils/files.py contains a dev-leftover list that
+includes 2015 months in training — superseded by training.py's explicit
+year arrays; noted to avoid future confusion.
+
+Launching the full-month A4 confirmation now (~35 min with conversion).

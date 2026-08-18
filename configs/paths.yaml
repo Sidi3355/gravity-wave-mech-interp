@@ -1,0 +1,13 @@
+# Central path + region registry. Bulk data lives OUTSIDE OneDrive (sync thrash);
+# override the data root with env var GWMI_DATA.
+data_root: "C:/Users/sidi0/gwmi_data"
+
+# Candidate study regions (lat/lon boxes, degrees; final choice logged in
+# RESEARCH_LOG once the tier decision and data source are fixed).
+# Orographic hotspots follow the anchor paper's evaluation regions.
+regions:
+  andes:            {lat: [-57.0, -25.0], lon: [286.0, 302.0], type: orographic}
+  himalaya:         {lat: [ 20.0,  45.0], lon: [ 70.0, 105.0], type: orographic}
+  drake_passage:    {lat: [-65.0, -50.0], lon: [285.0, 310.0], type: orographic}
+  tropical_wpac:    {lat: [-15.0,  15.0], lon: [130.0, 165.0], type: nonorographic}
+  atlantic_storms:  {lat: [ 35.0,  60.0], lon: [300.0, 340.0], type: nonorographic}

@@ -1,0 +1,15 @@
+# large arrays / raw data are regenerated or re-downloaded, never committed
+*.nc
+*.zarr/
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+data/
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/
+results/**/arrays/
+.pytest_cache/

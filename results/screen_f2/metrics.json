@@ -1,0 +1,44 @@
+{
+  "stamp": {
+    "config_hash": "04a4b71eb9c4",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:26:04+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "source": "a4_fullmonth artifacts"
+  },
+  "hypothesis": "H-F2",
+  "verdict": "KILL",
+  "improvement_ratio_nonorog_over_orog": 1.0646040350951713,
+  "mean_frac_improvement_top_decile": {
+    "orographic": 0.15721349203023247,
+    "nonorographic": 0.16737011798678803
+  },
+  "per_box": {
+    "1andes": 0.1762,
+    "2scand": 0.1403,
+    "3himalaya": 0.1603,
+    "4newfound": 0.152,
+    "5south_ocn": 0.2338,
+    "6se_asia": 0.1441,
+    "7natlantic": 0.162,
+    "8npacific": 0.1296
+  },
+  "orog_boxes": [
+    "1andes",
+    "2scand",
+    "3himalaya",
+    "4newfound"
+  ],
+  "nonorog_boxes": [
+    "5south_ocn",
+    "6se_asia",
+    "7natlantic",
+    "8npacific"
+  ],
+  "note": "improvement = (M1-M3)/M1 RMSE on top-decile M1-error timesteps; M3-lacks-zs caveat applies"
+}

@@ -415,3 +415,40 @@ C-5 (M1 vertical Jacobian calibration) complete, two results:
 H-A5 formal verdict pending (tail extraction from saved histograms; variance
 ratios M1 0.360 / M2 0.363 / M3 1.066 already recorded). Funnel: 29 generated,
 5 screened (4 pass, 1 kill), 1 measurement done, 2 deferred, 2 asset-blocked.
+
+## [2026-08-18 21:45] EXPERIMENTALIST + LEAD — Stage C wave 2a: A5/F3 pass, A2/F2 killed, A2b born
+
+H-A5 (rewritten) SCREEN-PASS (results/screen_a5_tails/): exact quantile ratios
+pred/true of |flux|, physical space, 24 July timesteps, per-timestep bootstrap:
+  M1  P90 0.065 [.064,.066]   P99 0.284 [.272,.297]   P99.9 0.593 [.576,.611]
+  M2  P90 0.114 [.112,.116]   P99 0.403 [.394,.412]   P99.9 0.615 [.605,.626]
+  M3  P90 0.278 [.274,.283]   P99 0.705 [.693,.716]   P99.9 1.024 [1.005,1.043]
+All CIs disjoint. Reading: ALL models regress typical amplitudes toward zero
+(even M3's P90 is 3.6x low); calibration improves with quantile level and with
+nonlocality; M3's extreme tail is calibrated. With month variance ratios
+(0.360/0.363/1.066) this mechanically explains the Hellinger ordering.
+H-F3 SCREEN-PASS on the SAME evidence (shared, not independent — logged to
+avoid double-counting): all tail ratios < 1 at P99 with M3 largest; ordering
+matches Hellinger ordering.
+
+H-A2 SCREEN-KILL per pre-registered threshold: M1->M2 gap concentration in
+top-decile |grad_h(u,v)| columns = 1.38 < 1.5 (orog-gradient concentration
+1.65). BUT the M2->M3 gap is strongly regime-structured: shear concentration
+2.92, orographic-gradient concentration 0.27 (anti-concentrated over
+mountains). NEW HYPOTHESIS H-A2b [GEN]: "M3's advantage over M2 is a
+shear-regime (storm-track/jet) phenomenon and is absent-to-negative over
+orography; consistent with lateral propagation of nonorographic GWs requiring
+horizontal context while orographic sources are locally determined."
+Screening data IS this observation, so confirmation is deferred to
+independent data (January month, Stage D) — no HARKing. Consequence: H-N5
+Jacobian targets must include storm-track columns, not only Andes.
+
+H-F2 SCREEN-KILL: M3's improvement on M1's top-decile-error timesteps is
+uniform across hotspot types (nonorog/orog ratio 1.06; per-box 0.13-0.23).
+Tension with H-A2b noted (time-mean column-wise concentration vs box-level
+event-conditional improvement measure different things); January adjudicates.
+
+FUNNEL: 30 hypotheses total (29 + A2b). Screened 9: PASS N1, I2, N3, P4, A5,
+F3(shared); KILL A1, A2, F2. Measurement C-5 done. Remaining cheap screens:
+N2, I1, A4, F1 (wave 2b, need fresh forward passes); R-family + N5 need the
+activation/probe infrastructure (wave 3).

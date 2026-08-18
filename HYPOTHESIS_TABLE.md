@@ -96,7 +96,7 @@ M1->M2 gap (the first nonlocality increment is largely linear context).
 - Kill: linear closes <20%.
 - Payoff: calibrates how much "deep" the nonlocality story needs to be.
 
-**H-A2** [GEN] (T6) Nonlocality gains concentrate in high-horizontal-shear /
+**H-A2** [SCREEN-KILL 2026-08-18: shear concentration 1.38 < 1.5; spawned H-A2b] (T6) Nonlocality gains concentrate in high-horizontal-shear /
 frontal / storm-track regimes rather than uniformly.
 - Cheapest: per-column M2-M1 and M3-M2 error-gap maps from the full-month
   run, composited by |grad(u)|, orography, hotspot type.
@@ -194,13 +194,13 @@ mechanism-limited.
 - Kill: n/a (both outcomes informative; screening records which).
 - Payoff: diagnosis of whether architecture or data caps current skill.
 
-**H-F2** [GEN] (T4) M1's worst transients are nonorographic (storm-track/
+**H-F2** [SCREEN-KILL 2026-08-18: nonorog/orog improvement ratio 1.06] (T4) M1's worst transients are nonorographic (storm-track/
 convective), and that is specifically what M3 fixes.
 - Cheapest: composite top-error events by hotspot type from month run.
 - Kill: no type asymmetry in the M1->M3 improvement.
 - Payoff: names WHAT nonlocality fixes, in meteorological terms.
 
-**H-F3** [GEN] (T6) All models compress flux tails (P99 pred/true < 1), M3
+**H-F3** [SCREEN-PASS 2026-08-18, evidence shared with H-A5] (T6) All models compress flux tails (P99 pred/true < 1), M3
 least — and this, not mean error, drives the Hellinger ordering.
 - Cheapest: tail ratios + Hellinger-vs-tail decomposition from month run.
 - Kill: tails calibrated or unrelated to Hellinger ordering.
@@ -256,7 +256,7 @@ distinct adversarial pass; objections will be appended, not edited in).
 
 STATUS CHANGES
 - H-A3 -> DEFER (training study over screening budget; causal half via H-N3).
-- H-A5 -> REWRITTEN: "M2 under-disperses (variance ratio < 1) and M3 is
+- H-A5 -> REWRITTEN [SCREEN-PASS 2026-08-18: variance 0.36/0.36/1.07, P99.9 tails 0.59/0.62/1.02, CIs disjoint]: "M2 under-disperses (variance ratio < 1) and M3 is
   better variance/tail-calibrated in the uvtheta setting; this, not mean
   error, drives the Hellinger ordering." Kill: |var-ratio difference| < 0.1
   or tail (P99) ratios statistically indistinguishable (bootstrap CI overlap).
@@ -333,3 +333,11 @@ NEW CONTROL ENTRIES
 - C-4 [CONTROL] Pole-edge twin of H-P4 (zero-padded latitude boundary).
 - C-5 [CONTROL] M1 vertical input-Jacobian map — calibration against
   Pahlavan-style ERF analysis; establishes T4 baseline before any T4 claims.
+
+NEW (generated during screening, 2026-08-18)
+- H-A2b [GEN, confirmation deferred to January/Stage-D data — born from H-A2's
+  screening data, no double-use]: M3's advantage over M2 concentrates in
+  high-shear (storm-track/jet) regimes (July concentration 2.92) and is
+  absent-to-negative over orography (0.27); mechanism candidate: lateral
+  propagation/advection of nonorographic GWs. Kill at confirmation:
+  January shear concentration < 2.0 or orographic concentration > 0.5.

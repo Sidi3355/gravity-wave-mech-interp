@@ -683,3 +683,32 @@ the critic's amendment anticipated).
 
 Next: G1 (qbo1d positive control for D2) — code inspection, then
 pre-registration, then run.
+
+## [2026-08-19 00:45] LEAD — G1 PRE-REGISTRATION (qbo1d positive control for D2)
+
+Subject: released fully_connected.pth emulator (10-layer ReLU MLP, float64,
+71->71) from DataWaveProject/qbo1d, trained on the stochastic-2-wave control
+run (data/direct/control.nc: u, S pairs; scaler_Y = GlobalMaxScaler over S
+labels, no scaler_X, per example_nn_emulator.ipynb conventions).
+Ground truth: E[S|u] by Monte-Carlo over the stochastic spectrum (20 waves,
+cs = +-10..100, ks = 2*2pi/4e7, AD99 amplitudes from (sf, cw) log-normal
+draws; K = 200 draws, sample_sf_cw seed 12345), physics re-implemented from
+qbo1d/stochastic_forcing.py verbatim formulas.
+
+PRECONDITION (tooling, not verdict): median profile corr(S_emul, E[S|u]) on
+100 ungrafted control profiles >= 0.8; if unmet, the shipped checkpoint does
+not emulate and G1 is INCONCLUSIVE (fallback: quick retrain per notebook
+recipe before judging D2).
+
+Grafts (same families as the M1 audit):
+- G1-a reflection: u'(z) = 2 u(z_c) - u(z) above z_c = level 36 (~26 km),
+  unchanged below; OOD rule |z|<=4 per level vs control-run u stats.
+- G1-b amplitude: u' = a*u, a in {0.25, 0.5, 0.75, 1.0, 1.25, 1.5}.
+100 profiles sampled evenly from the control run.
+
+CRITERIA (pre-registered): methodology VALIDATED if
+  (i) median profile-corr(dS_emul, dS_true) >= 0.5 for G1-a, AND
+  (ii) median Spearman between emulator and true response curves over a
+       >= 0.8 for G1-b.
+Both fail -> D2 KILLED (audit cannot detect physics even where learnable).
+One fails -> only the passing graft family carries D2 weight.

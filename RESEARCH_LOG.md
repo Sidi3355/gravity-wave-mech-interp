@@ -452,3 +452,41 @@ FUNNEL: 30 hypotheses total (29 + A2b). Screened 9: PASS N1, I2, N3, P4, A5,
 F3(shared); KILL A1, A2, F2. Measurement C-5 done. Remaining cheap screens:
 N2, I1, A4, F1 (wave 2b, need fresh forward passes); R-family + N5 need the
 activation/probe infrastructure (wave 3).
+
+## [2026-08-18 21:55] EXPERIMENTALIST + LEAD — Wave 2b: N2, I1, A4 killed; F1 measured
+
+Null refinement pre-registered for H-N2 (gate fields don't admit the T5
+"distance-decay" null): nulls = flux CLIMATOLOGY alignment + time-mismatched
+flux maps. Run AFTER logging this refinement.
+
+H-N2 SCREEN-KILL (decisive): corr(finest alpha_t, |flux|_t) = -0.015;
+climatology null 0.068; excess -0.083. Gates DO NOT localize sources — yet
+they are causally important (H-N3: +4.3%). Open wave-3 question: what do the
+gates encode? (First look suggests neither instantaneous flux nor pure
+climatology; candidates: input-field structure, implicit position.)
+
+H-I1 SCREEN-KILL per threshold: relative-octant ablation spread/mean = 0.165
+< 0.20. Suggestive below-threshold structure logged honestly: the UPSTREAM
+octant has the largest effect (0.515 vs mean 0.476), smallest at 315deg
+(0.437) — direction consistent with advection, magnitude insufficient at
+screening power. Not promoted; may be revisited only if a Stage-D result
+needs it. Secondary observation: resampling ONE of eight neighbors roughly
+DOUBLES M2's error (mean dMSE +0.476 on base ~0.49) — M2 demands spatially
+coherent neighborhoods (same OOD family as the I2 caveat; both interventions
+break physical coherence).
+
+H-A4 SCREEN-KILL: act6 context deltas are high-rank (top-5 PCs = 22.9% of
+variance; spectrum flat at ~4-5% each) and analytic projection-out moves M2
+predictions only 2.8% toward M1 (threshold 20%). No compact context channel
+at act6; context is integrated diffusely. (Untested at earlier layers —
+noted, not pursued without independent motivation.)
+
+H-F1 [MEASUREMENT] complete: top-1% error cells co-occur at 38-53x chance
+(m2-m3 strongest, 53x); error rank correlations 0.78-0.88. All three
+architectures share failure regimes -> consistent with a common data-limited
+error floor (ERA5 unresolved variance), for the paper's discussion section.
+
+FUNNEL: 13/30 screened. PASS: N1, I2, N3, P4, A5, F3. KILL: A1, A2, F2, N2,
+I1, A4. MEASUREMENTS: F1, C-5. Kill rate 46% — the funnel is doing its job.
+Next: flagship H-N5 + H-I4 (shared machinery), then R-family probe wave,
+T7 grafts (P1-P3), I3; then CHECKPOINT_C.

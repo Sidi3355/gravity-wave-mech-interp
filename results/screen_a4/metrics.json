@@ -1,0 +1,38 @@
+{
+  "stamp": {
+    "config_hash": "e3884c834bfc",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:37:54+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "a4_cols_per_timestep": 512
+  },
+  "hypothesis": "H-A4",
+  "verdict": "KILL",
+  "top5_delta_variance_fraction": 0.2291833907365799,
+  "singular_value_fractions_top10": [
+    0.05274990200996399,
+    0.047304682433605194,
+    0.04521577060222626,
+    0.04294823110103607,
+    0.040964819490909576,
+    0.03663361817598343,
+    0.032013632357120514,
+    0.029030630365014076,
+    0.02630242332816124,
+    0.02541252411901951
+  ],
+  "distance_to_m1_full": 0.3547612130641937,
+  "distance_to_m1_projected": 0.3449389636516571,
+  "moved_toward_m1_fraction": 0.027686931521342162,
+  "note": "projection applied analytically at act6 (linear into output layer); columns sampled per timestep",
+  "n_columns": 12288,
+  "n_timesteps": 24
+}

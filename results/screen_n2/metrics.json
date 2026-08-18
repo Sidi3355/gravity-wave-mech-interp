@@ -1,0 +1,25 @@
+{
+  "stamp": {
+    "config_hash": "e3884c834bfc",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:37:51+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "a4_cols_per_timestep": 512
+  },
+  "hypothesis": "H-N2",
+  "verdict": "KILL",
+  "corr_alpha_flux_t": -0.01525025445834335,
+  "null_climatology": 0.0679270755230497,
+  "null_time_mismatch": 0.05656919176825226,
+  "excess_over_max_null": -0.08317732998139306,
+  "n_timesteps": 24,
+  "note": "excess ~ 0 with high climatology corr = gates encode static geography (position-encoding thread), reported either way"
+}

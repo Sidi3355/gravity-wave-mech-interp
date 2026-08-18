@@ -10,7 +10,7 @@ published months are uvtheta-only; one released checkpoint per config.
 
 ## B-INFO — what the nonlocal context carries
 
-**H-I1** [GEN] (T3+T4) M2's gain over M1 is carried disproportionately by the
+**H-I1** [SCREEN-KILL 2026-08-18: octant spread 0.165 < 0.20; upstream hint logged] (T3+T4) M2's gain over M1 is carried disproportionately by the
 UPSTREAM neighbors of the 3x3 stencil (w.r.t. local background wind).
 - Cheapest: resample-ablate each of the 8 neighbor columns over held-out
   snapshots; composite skill drop by neighbor bearing relative to wind octant.
@@ -111,7 +111,7 @@ Attention UNet's Hellinger skill.
 - Kill: plain UNet clearly and consistently worse.
 - Payoff: mechanism-vs-capacity attribution for the headline architecture.
 
-**H-A4** [GEN] (T3+T6) The nonlocal information enters M2 through a LOW-RANK
+**H-A4** [SCREEN-KILL 2026-08-18: high-rank deltas, projection moves 2.8%] (T3+T6) The nonlocal information enters M2 through a LOW-RANK
 channel: activation deltas (full vs clamped neighborhoods) concentrate in few
 PCs, and projecting them out restores M1-like predictions.
 - Cheapest: PCA of deltas on ~20k columns; projection intervention.
@@ -135,7 +135,7 @@ structured and input-dependent (vs near-uniform saturation).
   negative that reroutes B-ATTN effort; cheap prerequisite for H-N2..N5.)
 - Payoff: gatekeeper result for all attention claims in this domain.
 
-**H-N2** [GEN] (T5) Fine-scale gates localize GW sources: alpha correlates
+**H-N2** [SCREEN-KILL 2026-08-18: corr with instantaneous flux = -0.015] (T5) Fine-scale gates localize GW sources: alpha correlates
 with hotspot masks/flux magnitude beyond a distance-decay null.
 - Cheapest: correlation of finest-level alpha with |flux| maps + null.
 - Kill: no excess over null.
@@ -187,7 +187,7 @@ released fine-tuned head on IFS data.
 
 ## B-FAIL — failure structure
 
-**H-F1** [GEN,dual-outcome] (T6) Worst-case failures co-occur across all three
+**H-F1** [MEASURED 2026-08-18: co-occurrence 38-53x chance -> shared data-limited floor] (T6) Worst-case failures co-occur across all three
 architectures (top-1% error overlap >> chance) — data-limited, not
 mechanism-limited.
 - Cheapest: error-map rank correlations + top-percentile overlap, full month.

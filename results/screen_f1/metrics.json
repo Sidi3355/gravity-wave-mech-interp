@@ -1,0 +1,40 @@
+{
+  "stamp": {
+    "config_hash": "e3884c834bfc",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:38:15+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "a4_cols_per_timestep": 512
+  },
+  "hypothesis": "H-F1 [MEASUREMENT]",
+  "top1pct_overlap": {
+    "m1_m2": {
+      "joint_top1pct_frac": 0.004185994466145833,
+      "enrichment_over_chance": 41.85994466145833
+    },
+    "m1_m3": {
+      "joint_top1pct_frac": 0.0037892659505208335,
+      "enrichment_over_chance": 37.892659505208336
+    },
+    "m2_m3": {
+      "joint_top1pct_frac": 0.005320231119791667,
+      "enrichment_over_chance": 53.202311197916664
+    }
+  },
+  "error_rank_correlations": {
+    "m1_m2": 0.8780685847343084,
+    "m1_m3": 0.7761638095640149,
+    "m2_m3": 0.8505384647031435
+  },
+  "n_cells": 196608,
+  "n_timesteps": 24,
+  "reading": "high enrichment = shared failure regimes (data-limited)"
+}

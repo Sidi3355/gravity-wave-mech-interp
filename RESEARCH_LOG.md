@@ -786,3 +786,33 @@ STAGE-D MAIN PHASE PLAN (next):
 3. D1 decomposition: roll-ensemble variance decomposition (position-driven vs
    flow-driven calibration share), depth-resolved roll-patching (where does
    position enter), regional conditioning; January confirmation (J1).
+
+## [2026-08-19 02:10] LEAD — PRE-REGISTRATION: D1 roll-ensemble; D2 battery (July/August arms)
+
+D1-A ROLL-ENSEMBLE DECOMPOSITION (July, 12 eval timesteps as in G2):
+rolls r in {8, 16, ..., 120} (15 rolls). For each: M3 calibration ladder
+(variance ratio, P90/P99/P99.9) on unrolled-scored predictions. Report
+base vs roll-ensemble mean +- sd. POSITION SHARE (pre-registered
+definition) = (var_base - mean_r var_rolled) / var_base; analogous shares
+for P99, P99.9. Regional conditioning: variance ratio computed separately
+over hotspot boxes vs non-hotspot columns, base vs rolled (does the
+position-keyed calibration live at specific places?). No new thresholds —
+descriptive decomposition; January confirms (ledger J1).
+
+D2-B GRAFT BATTERY, arms runnable pre-January:
+1. M1-global-uvtheta P1' (partial-graft): reflection with per-column largest
+   admissible beta (G1's amendment mirrored; beta >= 0.25 else excluded),
+   z_c = level 60, 300 July columns. Metric: median suppression above z_c.
+   Interpretation threshold as P1 (0.30) — expectation from screening: fails.
+2. Same battery on M1-global-uvthetaw (August snapshot columns, w channels
+   untouched): ROBUSTNESS AXIS across checkpoint + input-variant. (Strato
+   epoch pairs dropped for D2 grafts: strato-format inputs cannot be
+   verifiably reconstructed from global files — no strato test data exists to
+   validate against; limitation logged.)
+3. M3 spatially-coherent graft arm: reflection applied over a 10x10-column
+   patch (all columns, same z_c), M3 forward, suppression measured at the
+   patch's central 4x4 columns above z_c; 20 patches (5 regions x 4
+   timesteps), admissibility per column. This addresses "M1-only grafts"
+   criticism with an in-distribution-shaped M3 test.
+4. P3' amplitude battery on M1-uvthetaw (snapshots) — robustness of the
+   non-monotonicity result.

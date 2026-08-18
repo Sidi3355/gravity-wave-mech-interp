@@ -198,3 +198,90 @@ needs reconstructed neighborhoods. src/data/neighborhoods.py reverse-engineers
 the stored convention (centered 3x3, lon wrap, ZERO padding beyond poles) and
 tests/test_neighborhoods.py verifies bitwise equality against the released 3x3
 file at both timesteps. Gate green before use.
+
+## [2026-08-18 19:35] LEAD — Response to CRITIC pass (results/stageB_critic/critic_pass.md)
+
+Each objection answered in writing per protocol; table amendments appended to
+HYPOTHESIS_TABLE.md (statuses changed openly, history in git).
+
+S1 (H-A5 mis-specified: RMSE inversion is uvthetaw-only, months are
+uvtheta-only). ACCEPTED. H-A5 REWRITTEN: full-month test now targets the
+testable core — variance/tail calibration differences between M2 and M3 in the
+uvtheta setting (dry run already shows M2 variance ratio 0.53 vs M3 1.10 on
+snapshots). The uvthetaw inversion itself is demoted to "unresolved,
+snapshot-only observation" in all future reporting.
+
+S2 (double-dipping July). ACCEPTED. PRE-COMMITTED SPLIT, logged now, before
+any screening run: July 2015 (scaling07) = SCREENING ONLY. Stage-D
+confirmations use January 2015 (scaling01, download deferred to Stage D).
+Disk budget revised 30 -> 35 GB to accommodate (148 GB free; OneDrive
+unaffected). IFS data for B-TL, if pursued after asset verification, will
+displace the July file (screening artifacts are small and kept; raw month is
+re-downloadable). 
+
+S3 (H-A3 training study 10-100x over screening budget, result would not
+transfer to released M3). ACCEPTED. H-A3 -> DEFER (Stage-D option at most,
+only if gate-ablation evidence from H-N3 makes it decisive); its causal half
+is covered free by H-N3.
+
+S4 (guaranteed-positive probe traps). ACCEPTED. H-R2 amended: spatial
+train/test split (disjoint longitude sectors), must beat the raw-input probe
+baseline by a pre-set margin (see amendments), plus time-shuffled control.
+H-R5 amended: input-probe baseline mandatory; claim only depth-DIFFERENTIAL
+decodability (sign-vs-magnitude divergence), not raw decodability.
+
+S5 (unsharp kills; no cost audit). ACCEPTED. (a) Numeric kill thresholds
+added for every Stage-C-runnable hypothesis (amendments section). (b) Cost
+table measured and committed (results/cost_table.json): M1 0.82 s, M2 1.37 s,
+M3 0.19 s per timestep fwd; M3 Jacobian row 0.56 s; hooks ~free; M3 acts
+16 MB/timestep. Full-month eval ~29 min. Re-scoped budgets for I3/I4/N5/R4
+noted in amendments; nothing exceeds 20 min except the (already sanctioned)
+full-month artifact run.
+
+S6 (cross-cutting confounds). ACCEPTED with one REBUTTAL:
+- Metric-space rule declared: RMSE/R2-type metrics in NORMALIZED space
+  (training-loss space); distributional/tail metrics in PHYSICAL space.
+  Every results file states its space. 
+- Normalization-constant equality across files is now a hard assertion in
+  experiments/02 (run aborts on mismatch).
+- M3-lacks-zs contamination of F2/A2/A5: interpretation notes added — any
+  M1-vs-M3 regime difference may reflect input-set differences, not
+  architecture alone; M2-vs-M1 comparisons (same inputs) carry the clean
+  architectural contrast.
+- REBUTTAL on hotspot boxes: they do NOT come from the unread PDF; they are
+  hard-coded in the released dataloader (region registry, verified in code)
+  and cross-validated against companion papers by the deep-read. Usable for
+  screening. The unread-PDF gap affects only paper-wording verification.
+- Epoch-pair robustness control ADOPTED (new C-1): strato uvtheta pairs
+  (M1 ep88/100, M2 ep38/93) re-run for any probe/feature finding that reaches
+  Stage D, as the only free multi-checkpoint robustness check at Tier 1.
+
+S7 (weakest five). H-A5 rewritten (above); H-A3 deferred; H-L2 DEFER pending
+asset verification (H-L1 reduced to its weight-delta component L1a, runnable
+after checkpoint verification, before committing to IFS data); H-N4 DEFER
+unless H-N1 passes AND the new input-displacement null (alpha displacement vs
+displacement of the input fields themselves) is implementable within budget;
+H-R4 re-scoped to a quantitative screening gate: recon/sparsity frontier +
+dead-rate + spatial-autocorrelation of feature maps vs a random-dictionary
+null (numeric), with human-legible dashboards deferred to Stage D. H-F1
+relabeled [MEASUREMENT] (still run; informs F-family interpretation).
+
+S8 (strongest five: P4, N1, I2, A1, N3). ADOPTED as Stage-C wave 1, with
+dependency ordering (S12): N1 gates N2/N3(/N4); I2 gates I1/A4; P4 informs
+N5/I4 target placement; A1 gates I3; asset-verify gates L1a.
+
+S9/S10 (T7 external validity). ACCEPTED. All synthetic-input screens must
+report an OOD score (per-channel z-score envelope vs training distribution)
+and include real-profile-GRAFTED variants (modify one physical aspect of a
+real column) as the primary evidence; fully synthetic profiles are secondary.
+P1's "publication value either way" claim withdrawn for OOD-ambiguous
+negatives. M3/M2 uniform-context arms of P1/P2 dropped (inadmissibly OOD).
+
+S11 (missing controls). ADOPTED as C-1..C-5: epoch-pair robustness (C-1);
+area-weighted metric recheck (C-2 — already implemented in experiments/02);
+clamped-M2-vs-M1 prediction-identity diagnostic inside H-I2 (C-3); pole-edge
+twin of P4 (C-4, zero-padded lat edges); M1 vertical-Jacobian calibration
+against Pahlavan-style ERF prior art (C-5).
+
+Verdict: table amended, 27 active + 2 deferred-pending-assets + 2 deferred;
+Stage C may begin once the July artifacts run completes.

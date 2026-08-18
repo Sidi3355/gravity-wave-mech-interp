@@ -247,3 +247,89 @@ T1 (R1,R2,R3,R5), T2 (R4), T3 (I1,I2,I4,A4,N3,N5,P4), T4 (I1,I3,F2,N5),
 T5 (N1-N4), T6 (A1,A2,A3,A5,L1,L2,F1,F3), T7 (P1-P3), T8 (R6,L2), T9 (in R4)
 — 9/9 families represented, >=6 required. CRITIC pass: pending (next step,
 distinct adversarial pass; objections will be appended, not edited in).
+
+---
+# Post-critic amendments (2026-08-18; critic: results/stageB_critic/critic_pass.md,
+# LEAD responses: RESEARCH_LOG same date). Statuses + sharpened kill thresholds.
+# Metric-space rule: RMSE/R2 in normalized space; distributional/tail metrics in
+# physical space. Screening month = July 2015 ONLY; confirmations = January 2015.
+
+STATUS CHANGES
+- H-A3 -> DEFER (training study over screening budget; causal half via H-N3).
+- H-A5 -> REWRITTEN: "M2 under-disperses (variance ratio < 1) and M3 is
+  better variance/tail-calibrated in the uvtheta setting; this, not mean
+  error, drives the Hellinger ordering." Kill: |var-ratio difference| < 0.1
+  or tail (P99) ratios statistically indistinguishable (bootstrap CI overlap).
+  The uvthetaw RMSE inversion is demoted to an unresolved snapshot observation.
+- H-L1 -> L1a only (weight-delta diagonality analysis) until TL checkpoints
+  are verified; H-L2 -> DEFER pending assets.
+- H-N4 -> DEFER unless H-N1 passes and an input-displacement null fits budget.
+- H-R4 -> quantitative gate only at screening: dead-feature rate < 80%, recon
+  R2 > 0.7 at L0 <= 40, and mean spatial autocorrelation of top-50 feature maps
+  > 95th percentile of a random-dictionary null. Dashboards deferred to Stage D.
+- H-F1 -> relabeled [MEASUREMENT] (runs with the F-family artifacts).
+
+SHARPENED KILL THRESHOLDS (screening; all with 3 cases/seeds where applicable)
+- H-I1: kill if max-vs-min neighbor ablation RMSE delta, composited by wind
+  octant, differs by < 20% of the mean ablation effect (i.e., no directional
+  structure) across 3 disjoint July weeks.
+- H-I2: kill if clamped-neighborhood M2 recovers > 70% of the M1->M2 RMSE gap
+  (gain mostly smoothing). C-3 diagnostic reported alongside: correlation of
+  clamped-M2 vs M1 predictions.
+- H-I3: kill if center+gradient model closes < 30% of the M1->M2 gap (3 seeds,
+  1-week subset, fixed width). Runs only if H-A1 leaves >= 30% of gap unexplained.
+- H-I4: kill if RMSE(r=1 occlusion) within 5% of RMSE(full input) at hotspot
+  targets (M3 effectively local). Budget: 5 radii x 24 timesteps x 1 fwd = ~1 min.
+- H-R1: kill if peak selectivity (real minus max(random-init, input-baseline))
+  < 0.05 R2 at every depth for both N2 and Ri.
+- H-R2: spatial split (disjoint 90-deg longitude sectors); kill if M3 probe R2
+  beats input-baseline probe by < 0.1, or fails the time-shuffle control.
+- H-R3: kill if cross-region orographic/nonorographic AUC < 0.65 (chance 0.5)
+  while within-region AUC > 0.8 signals geographic-only coding (report which).
+- H-R5: kill if sign-vs-magnitude decodability profiles differ by < 0.05
+  (probe metric) at every depth after input-baseline subtraction.
+- H-R6: kill if no layer-to-layer jump in flux-lens R2 exceeds 2x the median
+  inter-layer increment (no crystallization point).
+- H-A1: kill if stencil ridge closes < 20% of the M1->M2 RMSE gap (normalized
+  space, July subsample >= 10^5 columns, closed form).
+- H-A2: kill if top-decile |grad(u)| columns' share of the M2-M1 skill gap is
+  < 1.5x their column share (no concentration) — same test for M3-M2 with the
+  input-set caveat noted.
+- H-A4: kill if top-5 PCs of (full-minus-clamped) act6 deltas explain < 50% of
+  delta variance, or projecting them out moves M2 predictions < 20% toward M1.
+- H-N1: kill if spatial std of alpha (finest gate, 24 July timesteps) < 2x the
+  random-init control's, or temporal input-sensitivity (std across timesteps at
+  fixed location) < 2x control.
+- H-N2: kill if corr(alpha, |flux|) minus distance-decay null < 0.1 (Fisher-z,
+  24 timesteps).
+- H-N3: kill if flattening any single gate level changes global RMSE by < 2%
+  and hotspot RMSE by < 5% (gates causally inert at screening resolution).
+- H-N5: kill if influence-map anisotropy (major/minor axis ratio) < 1.3, or
+  alignment with ray-cone azimuth no better than the advection null (paired
+  comparison over >= 20 hotspot targets). Budget: Jacobian rows 0.56 s each.
+- H-F2: kill if the M1->M3 top-1%-error improvement ratio for nonorographic
+  vs orographic hotspot columns is < 1.5 (with M3-lacks-zs interpretation note).
+- H-F3: kill if P99(pred)/P99(true) ordering does not match Hellinger ordering
+  across models, or all ratios within [0.9, 1.1] (tails calibrated).
+- H-P1: real-profile-grafted reversals primary; kill if flux above the grafted
+  critical level is suppressed by < 30% relative to matched no-reversal grafts
+  (median over >= 100 columns) or if the OOD envelope flags the graft
+  (any |z| > 4 channel) — then inadmissible, not negative.
+- H-P2: kill if predicted surface-flux vector rotation tracks wind rotation
+  with circular correlation < 0.5 over a 360-deg sweep (M1/M2 only).
+- H-P3: kill if response is non-monotone (Spearman < 0.8) inside the observed
+  amplitude range on grafted columns.
+- H-P4: kill if longitudinal RMSE profile shows no local excess >= 5% at the
+  seam (cols 0-2/125-127) vs interior, AND the rolled-input twin moves nothing.
+  C-4 twin: same test at zero-padded latitude edges.
+
+NEW CONTROL ENTRIES
+- C-1 [CONTROL] Epoch-pair robustness: any probe/SAE/feature finding reaching
+  Stage D must replicate across the strato uvtheta epoch pairs (M1 88/100,
+  M2 38/93) or carry a fragility caveat.
+- C-2 [CONTROL] Area-weighted metrics: implemented in experiments/02; any
+  ordering that flips under area weighting is reported as weighting-sensitive.
+- C-3 [CONTROL] Clamp-identity diagnostic inside H-I2 (M2-clamped vs M1).
+- C-4 [CONTROL] Pole-edge twin of H-P4 (zero-padded latitude boundary).
+- C-5 [CONTROL] M1 vertical input-Jacobian map — calibration against
+  Pahlavan-style ERF analysis; establishes T4 baseline before any T4 claims.

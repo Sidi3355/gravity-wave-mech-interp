@@ -1,0 +1,23 @@
+{
+  "stamp": {
+    "config_hash": "147378f7521e",
+    "seed": null,
+    "timestamp_utc": "2026-08-18T18:14:55+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "note": "i7-1065G7 CPU, torch 2.13.0+cpu, snapshot t0"
+  },
+  "threads": 6,
+  "m1_fwd_timestep_s": 0.82,
+  "m1_acts_MB_per_4096cols": 132.9,
+  "m2_neighborhood_construct_s": 0.09,
+  "m2_fwd_timestep_s": 1.28,
+  "m3_fwd_timestep_s": 0.19,
+  "m3_fwd_with_hooks_s": 0.17,
+  "m3_acts_MB_per_timestep": 16.0,
+  "m3_fwd_bwd_jacobian_row_s": 0.56
+}

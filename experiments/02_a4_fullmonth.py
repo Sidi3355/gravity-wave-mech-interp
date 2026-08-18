@@ -66,6 +66,7 @@ class Accum:
     def __init__(self, n_time: int, edges: np.ndarray):
         nb = edges.size - 1
         self.sse = 0.0
+        self.sse_aw = 0.0   # area-weighted (approx Gaussian weights ~ cos(lat))
         self.n = 0
         self.sse_col = np.zeros((64, 128))
         self.sse_chan = np.zeros(244)
@@ -79,10 +80,12 @@ class Accum:
         self.sumsq_true = 0.0
 
     def update(self, t: int, pred_cols: np.ndarray, true_cols: np.ndarray,
-               pred_phys: np.ndarray, true_phys: np.ndarray, edges: np.ndarray):
+               pred_phys: np.ndarray, true_phys: np.ndarray, edges: np.ndarray,
+               area_w: np.ndarray):
         err = pred_cols - true_cols                       # (8192, 244)
         se = err ** 2
         self.sse += float(se.sum())
+        self.sse_aw += float((se.mean(axis=1) * area_w).sum())
         self.n += err.size
         self.sse_col += se.mean(axis=1).reshape(64, 128)
         self.sse_chan += se.mean(axis=0)
@@ -99,7 +102,7 @@ class Accum:
         self.sum_true += float(true_phys.sum());  self.sumsq_true += float((true_phys ** 2).sum())
 
     def state(self) -> dict:
-        d = {"sse": self.sse, "n": self.n, "sse_col": self.sse_col,
+        d = {"sse": self.sse, "sse_aw": self.sse_aw, "n": self.n, "sse_col": self.sse_col,
              "sse_chan": self.sse_chan, "rmse_t": self.rmse_t,
              "sum_pred": self.sum_pred, "sumsq_pred": self.sumsq_pred,
              "sum_true": self.sum_true, "sumsq_true": self.sumsq_true}
@@ -111,7 +114,7 @@ class Accum:
         return d
 
     def load(self, z) -> None:
-        self.sse = float(z["sse"]); self.n = int(z["n"])
+        self.sse = float(z["sse"]); self.sse_aw = float(z["sse_aw"]); self.n = int(z["n"])
         self.sse_col = z["sse_col"]; self.sse_chan = z["sse_chan"]
         self.rmse_t = z["rmse_t"]
         self.sum_pred = float(z["sum_pred"]); self.sumsq_pred = float(z["sumsq_pred"])
@@ -148,7 +151,23 @@ def main():
     ds = xr.open_dataset(CFG["month_file"])
     n_time = ds.sizes["time"]
     consts = parse_norm_constants(ds["output"].attrs["long_name"])
+    # Cross-file comparability gate (critic S6b): normalization constants must
+    # equal the ones in the released Aug-2015 snapshots, else all cross-file
+    # metrics are incomparable and the run must not proceed.
+    EXPECTED = {"uw": (-0.0005112474139891424, 0.0050768547492663395),
+                "vw": (-0.0002982954242187403, 0.003792741148955207)}
+    for v, (mu, sig) in EXPECTED.items():
+        got = consts[v]
+        if abs(got[0] - mu) > 1e-15 or abs(got[1] - sig) > 1e-15:
+            raise RuntimeError(f"normalization constants for {v} differ from "
+                               f"snapshot files: {got} vs {(mu, sig)}")
     edges = np.linspace(-CFG["hist_range"], CFG["hist_range"], CFG["hist_bins"] + 1)
+    # Approx Gaussian-quadrature area weights ~ cos(lat), normalized to mean 1,
+    # broadcast to the (8192,) column vector (lat-major reshape order).
+    lat_deg = ds["lat"].values.astype(np.float64) * 90.0
+    w_lat = np.cos(np.deg2rad(lat_deg))
+    w_lat = w_lat / w_lat.mean()
+    area_w = np.repeat(w_lat, 128)  # (64*128,), matches reshape(-1) order
 
     feat = CFG["features"]
     models = {m: load_model(m, feat, "global", root=Path(CFG["weights_root"]))
@@ -197,7 +216,7 @@ def main():
             if not np.isfinite(pred).all():
                 raise RuntimeError(f"non-finite prediction t={t} model={m}")
             acc[m].update(t, pred, true_cols, to_physical(pred, consts),
-                          true_phys, edges)
+                          true_phys, edges, area_w)
 
         if (t + 1) % CFG["checkpoint_every"] == 0 or t == n_time - 1:
             save_state(t + 1)
@@ -218,6 +237,7 @@ def main():
         var_pred = a.sumsq_pred / n_phys - (a.sum_pred / n_phys) ** 2
         results["models"][m] = {
             "rmse_norm": float(np.sqrt(a.sse / a.n)),
+            "rmse_norm_areaweighted": float(np.sqrt(a.sse_aw / (n_time * 8192))),
             "hellinger_uw_phys": hellinger_from_hist(a.hist_pred["uw"], a.hist_true["uw"]),
             "hellinger_vw_phys": hellinger_from_hist(a.hist_pred["vw"], a.hist_true["vw"]),
             "variance_ratio_phys": float(var_pred / var_true),

@@ -1,0 +1,54 @@
+{
+  "stamp": {
+    "config_hash": "4953f1318c0c",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T22:32:26+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "roll": 64
+  },
+  "experiment": "D1-B cumulative roll-patching",
+  "roll": 64,
+  "stats": {
+    "base": {
+      "variance_ratio": 1.0984463691711426,
+      "p999": 1.0102177858352661
+    },
+    "rolled": {
+      "variance_ratio": 0.33346647024154663,
+      "p999": 0.593406081199646
+    },
+    "patch_upto_conv1": {
+      "variance_ratio": 0.3331452012062073,
+      "p999": 0.5903814435005188
+    },
+    "patch_upto_conv2": {
+      "variance_ratio": 0.332608163356781,
+      "p999": 0.5901507139205933
+    },
+    "patch_upto_conv3": {
+      "variance_ratio": 0.3268279731273651,
+      "p999": 0.5811609029769897
+    },
+    "patch_upto_conv4": {
+      "variance_ratio": 0.4264029562473297,
+      "p999": 0.6203165054321289
+    },
+    "patch_upto_conv5": {
+      "variance_ratio": 0.7964750528335571,
+      "p999": 0.8468157052993774
+    }
+  },
+  "restoration_fraction_variance": {
+    "conv1": -0.0004199705584276053,
+    "conv2": -0.0011219992655579808,
+    "conv3": -0.00867800202785784,
+    "conv4": 0.1214887948504597,
+    "conv5": 0.6052558808929213
+  },
+  "sanity_full_patch_restores": false
+}

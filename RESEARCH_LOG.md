@@ -863,3 +863,24 @@ decoder input then carries unrolled-consistent features.
 READING: the depth at which restoration jumps localizes where the
 position-dependent computation enters. 12 July eval timesteps (as G2/D1-A).
 Descriptive; no kill threshold; January not involved.
+
+## [2026-08-19 03:40] EXPERIMENTALIST + LEAD — D1-B: position code localized to
+## deep encoder + decoder (pre-registration assumption corrected, logged)
+
+results/d1_rollpatch/. Cumulative roll-patching restoration of the variance
+ratio: conv1 -0.000, conv2 -0.001, conv3 -0.009, conv4 +0.121, conv5 +0.605
+(cumulative). The pre-registered sanity endpoint (full encoder patching
+restores ~1.0) came out 0.61 — NOT an implementation error: the identity
+full-patch control reproduces the base prediction to max|diff| = 0.0
+(exact). The endpoint ASSUMPTION was wrong: the decoder's own padded convs
+also compute position-sensitively. Corrected decomposition of the
+position-driven variance computation: encoder conv1-3 ~0%, conv4 ~12%,
+bottleneck conv5 ~48%, decoder ~39%. READING: the position prior forms where
+receptive fields become global (bottleneck) and is further applied through
+decoder-stage boundary effects — consistent with padding-derived position
+information accumulating with depth (Islam et al. 2020). This completes
+D1's mechanism localization at July-level evidence: a position-indexed
+variance prior, formed at bottleneck depth, applied through the decoder,
+concentrated over climatological hotspots (D1-A), NOT implementable as
+output rescaling (G2i), carrying 62% of variance calibration (D1-A).
+[PENDING-J1] January confirmation of the headline numbers.

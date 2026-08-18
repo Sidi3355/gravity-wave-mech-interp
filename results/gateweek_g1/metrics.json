@@ -1,0 +1,39 @@
+{
+  "stamp": {
+    "config_hash": "9490b1c02005",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T22:04:55+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed_mc": 12345
+  },
+  "gate": "G1",
+  "verdict": "PARTIAL",
+  "precondition_fidelity_median_corr": 0.9826359082019507,
+  "precondition_met": true,
+  "g1a_reflection": {
+    "median_corr_dS": 0.06049912178549577,
+    "iqr": [
+      -0.07267227366641817,
+      0.7664985328050927
+    ],
+    "n_admissible": 100,
+    "n_ood": 0,
+    "median_beta": 1.0
+  },
+  "g1b_amplitude": {
+    "median_spearman_vs_truth": 0.942857142857143,
+    "iqr": [
+      0.7714285714285715,
+      0.942857142857143
+    ],
+    "n_admissible": 100,
+    "n_ood": 0
+  },
+  "mc_draws": 200,
+  "zc_level": 36
+}

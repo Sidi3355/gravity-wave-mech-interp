@@ -100,3 +100,58 @@ paths) — the prior session's workflow died without writing any output. Two age
 hit connection errors just before writing findings; both resumed with context
 intact (their intermediate artifacts, including a cloned QBO-1D repo and the
 Pahlavan full text, are on disk).
+
+## [2026-08-18 18:55] LEAD — Stage A discovery complete; TIER 1 DECISION
+
+All 7 discovery agents returned (full reports in results/stageA_discovery/,
+inventory in ASSETS.md). Highlights:
+- Anchor's code (MIT, Zenodo 10.5281/zenodo.16415113) AND all 12 released
+  checkpoints (M1/M2/M3 x uvtheta/uvthetaw x global/stratosphere_only, HF
+  amangupta2/nonlocal_gwfluxes) verified and downloaded. Two training-format
+  test files (hourly 2015) included with exact normalization constants.
+- Training data distribution (WxC-Bench monthly files, ~15-21 GB/month) public
+  on HF; 1-2 months affordable if retraining controls are needed.
+- Architectures read from code: M1/M2 share ANN_CNN (6 hidden LeakyReLU
+  layers; M2 prepends one valid 3x3 Conv2d, channel-preserving); M3 is an
+  Oktay-style Attention U-Net (64->1024 ch, 4 down/up levels) whose
+  "attention" is sigmoid GATING on skip connections — NOT self-attention.
+  B-ATTN hypotheses must target gate fields alpha(x,y) at 4 scales; M3
+  nonlocality lives in the encoder-decoder hierarchy (global at 4x8
+  bottleneck). Paper-vs-code discrepancy noted: arXiv:2406.14775 says
+  "4-layer" MLP; code has 6 hidden layers. Code + checkpoints are ground truth.
+
+DECISION (A3): **Tier 1** — pure interpretability study on the actual released
+models. Reasoning: released checkpoints + released eval data + released code
+= zero replication risk of the models themselves; our CPU-only machine is far
+better matched to inference-heavy interp than to training. Supplements:
+(a) Tier-2-style reduced-scale retrains remain available (WxC-Bench months)
+for seed-robustness controls and architecture ablations where a claim needs
+them; (b) qbo1d testbed (CPU-trivial, differentiable) available as a
+mechanistically-transparent complement if needed.
+
+A4 ADAPTATION (logged deviation): the master prompt's "3 seeds per model"
+replication gate assumed we train the ladder ourselves. At Tier 1 there is
+exactly one released checkpoint per configuration, so the gate becomes:
+evaluate released M1/M2/M3 (global uvtheta + uvthetaw variants) on the
+released held-out 2015 test data and confirm the paper's skill ordering
+M3 <= M2 <= M1 on RMSE and Hellinger distance. Seed variance enters later
+via reduced-scale retrain controls only where a Stage-D claim depends on it.
+
+NOVELTY REFRAME (from agent 6): the broad claim "mech interp of climate
+surrogates is unexplored" is FALSE as of 2025-26 (SAEs+steering on GraphCast
+arXiv:2512.24440; probes on Aurora arXiv:2511.07787; SAEs on Walrus
+arXiv:2606.11657; CKA GraphCast-Aurora arXiv:2605.23778). The NARROW claim
+survives and is verified: no probing, SAE, causal-intervention, or
+representation-level interp exists for GW (or any subgrid) parameterization
+emulators; deepest GW-specific work is SHAP (Haslauer/Eyring arXiv:2605.05052)
+and kernel-Fourier (Pahlavan 2024) + gradient ERF (Pahlavan 2025, overlaps our
+T4 -> cite). Framing: "first mechanistic interpretability study of a
+parameterization emulator, on the actual released models of the anchor paper."
+The window is PERISHABLE (Eyring group active on GW-NN explainability).
+
+OPEN GAP: anchor PDF itself unreadable by agents (Cloudflare). All technical
+facts recovered from code/data/companions. Flagged for optional manual browser
+download by the human (CC BY, free) to verify hotspot boxes + limitations
+wording before paper writing.
+
+Next: A4 replication gate on the released checkpoints.

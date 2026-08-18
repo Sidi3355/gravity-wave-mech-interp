@@ -568,3 +568,28 @@ FUNNEL: 23/30 resolved. PASS: N1, I2, N3, P4, A5, F3, I4, R3, R6 (9).
 KILL: A1, A2, F2, N2, I1, A4, N5, R1, R2, R5, P1, P2, P3 (13).
 MEASURED: F1, C-5. Remaining: I3, R4 (running next); deferred: A3, N4,
 A2b (Jan), L1a/L2 (assets). Then CHECKPOINT_C.
+
+## [2026-08-18 23:00] EXPERIMENTALIST + LEAD — Screening COMPLETE (25/30 resolved)
+
+H-I3 SCREEN-KILL: gradient features close 9.6% of the M1->M2 gap (3 seeds:
+0.085/0.098/0.106; twin small-MLPs, ref gap 0.0867 on shared eval columns).
+Caveat: twins are weaker than M1 (0.823 vs 0.786) — closure measured in a
+weaker regime; direction is unambiguous. With I2 (context = information) and
+I1 (no directional structure): the 3x3 gain rides on the full multivariate
+neighborhood pattern, not simple derived quantities.
+
+H-R4 SCREEN-KILL (incl. extension sweep lam up to 1.0, logged): SAEs at
+M1/act3 and M3/conv2 never approach the L0<=40 target (min 1043 / 106) and
+top-50 feature maps do not beat the random-direction spatial null (0.66-0.71
+vs null95 0.70; 0.59-0.60 vs 0.69). Representations resist vanilla-L1 sparse
+decomposition at this budget — consistent with A4 (high-rank context) and R1
+(no linear intermediates). Top-k/larger dictionaries remain a Stage-D option
+only if feature-level analysis becomes necessary.
+
+FINAL FUNNEL (30 total):
+  SCREEN-PASS (9): N1, I2, N3, P4, A5, F3, I4, R3, R6
+  SCREEN-KILL (15): A1, A2, F2, N2, I1, A4, N5, R1, R2, R5, P1, P2, P3, I3, R4
+  MEASURED (1): F1  |  CONTROL: C-5
+  DEFERRED (5): A3, N4, A2b (January), L1a, L2 (asset verification)
+Kill rate 62% of screened. Proceeding to CHECKPOINT_C: LEAD ranking draft,
+CRITIC challenge in writing, then PAUSE for human review per master prompt.

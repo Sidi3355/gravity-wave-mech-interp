@@ -1,0 +1,45 @@
+{
+  "stamp": {
+    "config_hash": "d591fb220982",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T21:22:56+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 12,
+    "cols_per_t": 2048,
+    "epochs": 8,
+    "lambda_grid": [
+      0.1,
+      0.3,
+      1.0
+    ]
+  },
+  "hypothesis": "H-R4",
+  "verdict": "KILL",
+  "m1_act3": {
+    "lambda": 1.0,
+    "recon_r2": 0.8672002553939819,
+    "mean_L0": 1042.560791015625,
+    "dead_rate": 0.0,
+    "mean_autocorr_top50": 0.7102832984924317,
+    "null95_autocorr": 0.699082758455157,
+    "gates_met": false
+  },
+  "m3_conv2": {
+    "lambda": 1.0,
+    "recon_r2": 0.8774159550666809,
+    "mean_L0": 106.12890625,
+    "dead_rate": 0.0,
+    "mean_autocorr_top50": 0.6002684265375138,
+    "null95_autocorr": 0.6937802261320621,
+    "gates_met": false
+  },
+  "dict_size": "2x width",
+  "note": "quantitative gates only; dashboards deferred to Stage D per critic re-scope"
+}

@@ -23,7 +23,7 @@ neighbors with copies of the center column destroys most of the M1->M2 gap.
 - Kill: clamped M2 ~= full M2 (gain then IS local/smoothing — report as such).
 - Payoff: separates "more context" from "averaged context".
 
-**H-I3** [GEN] (T4->T3) The specific carriers are horizontal GRADIENTS (shear,
+**H-I3** [SCREEN-KILL 2026-08-18: gradients close 9.6% of gap] (T4->T3) The specific carriers are horizontal GRADIENTS (shear,
 deformation) of u, v across the stencil, not raw neighbor values.
 - Cheapest: small-MLP on center column + finite-difference gradient features
   vs center-only twin (1-week July subset, reduced width, 3 seeds); compare
@@ -65,7 +65,7 @@ orographic-vs-nonorographic separability transfers across disjoint regions.
   (geographic coding — still reportable, flips the interpretation).
 - Payoff: regime abstraction is the trust-relevant property for deployment.
 
-**H-R4** [GEN] (T2+T9) Mid-depth SAE features align with nameable meteorology:
+**H-R4** [SCREEN-KILL 2026-08-18: dense codes, L0>=106 at all lambdas, null wins] (T2+T9) Mid-depth SAE features align with nameable meteorology:
 a nontrivial fraction of alive features have geographically/physically
 coherent activation maps (mountain wakes, jet exits, convective clusters).
 - Cheapest: SAE at one M3 encoder depth + one M1 mid-layer, ~100k vectors,

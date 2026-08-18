@@ -490,3 +490,33 @@ FUNNEL: 13/30 screened. PASS: N1, I2, N3, P4, A5, F3. KILL: A1, A2, F2, N2,
 I1, A4. MEASUREMENTS: F1, C-5. Kill rate 46% — the funnel is doing its job.
 Next: flagship H-N5 + H-I4 (shared machinery), then R-family probe wave,
 T7 grafts (P1-P3), I3; then CHECKPOINT_C.
+
+## [2026-08-18 22:05] EXPERIMENTALIST + LEAD — FLAGSHIP H-N5 KILLED; H-I4 PASSES
+
+H-N5 SCREEN-KILL (results/screen_n5/): influence maps (|grad| of predicted
+flux energy at 20 hotspot targets w.r.t. all input columns), ring 1<d<=10
+cells: median axis ratio 1.07 (threshold 1.3) — essentially ISOTROPIC; wind
+alignment 9/20 (chance 6.7/20, threshold 12/20). The "network learned lateral
+GW propagation" headline hypothesis dies at screening. Post-hoc caveat logged
+for honesty: at T42 (~380 km cells), physical horizontal group displacements
+during vertical propagation are typically sub-cell, so the prior for
+propagation-shaped anisotropy at this resolution was weaker than the
+hypothesis assumed. The kill stands (screening criteria were pre-registered);
+the caveat shapes the PAPER framing (offline nonlocality at T42 is not
+propagation-shaped), not the verdict.
+
+H-I4 SCREEN-PASS (results/screen_i4/): occlusion-radius curves at the same 20
+targets: median saturation radius 4 cells (~1500 km); spread 1..>16 with 4/20
+targets needing >16 cells. M3 causally uses FAR more than the 3x3 ring.
+
+EMERGING SYNTHESIS (for CHECKPOINT_C): M3's nonlocality is real and
+large-radius (I4) but ISOTROPIC (N5), not flux-localizing (N2), concentrated
+in shear regimes (A2b), variance/tail-calibrating (A5/F3), and entangled with
+implicit position encoding from padding geometry (P4). Picture: a broad
+"regime encoder" using regional context + implicit geography — NOT a wave-path
+tracer. The kills are doing as much narrative work as the passes.
+
+FUNNEL: 15/30 screened. PASS: N1, I2, N3, P4, A5, F3, I4 (7). KILL: A1, A2,
+F2, N2, I1, A4, N5 (7). MEASURED: F1, C-5. Remaining before CHECKPOINT_C:
+R-family probes (R1, R2, R3, R5, R6), SAE gate (R4), T7 grafts (P1-P3), I3;
+deferred: A3, N4, A2b (January), L1a/L2 (asset check).

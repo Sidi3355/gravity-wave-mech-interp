@@ -32,7 +32,7 @@ deformation) of u, v across the stencil, not raw neighbor values.
 - Payoff: names the physical quantity that nonlocality supplies (ties to
   frontogenesis/jet-imbalance GW sources).
 
-**H-I4** [GEN] (T3) M3 causally uses context beyond the 3x3 ring: occluding
+**H-I4** [SCREEN-PASS 2026-08-18: median used-context radius 4 cells, up to >16] (T3) M3 causally uses context beyond the 3x3 ring: occluding
 input outside radius r around a target column degrades skill for r >> 1.
 - Cheapest: occlusion sweep r in {1,2,4,8,16} cells on snapshot subsets,
   skill-vs-r curve for hotspot vs quiet columns.
@@ -155,7 +155,7 @@ cross-correlates with background-wind advection.
 - Kill: no coherent displacement signal.
 - Payoff: dynamic gating mirrors transport — connects to transient-skill claim.
 
-**H-N5** [GEN] (T3+T4+physics) FLAGSHIP CANDIDATE: M3's causal influence map
+**H-N5** [SCREEN-KILL 2026-08-18: influence isotropic (ratio 1.07), alignment 9/20] (T3+T4+physics) FLAGSHIP CANDIDATE: M3's causal influence map
 (which input columns move the flux at a target column, via occlusion/Jacobian)
 is anisotropic along ray-traced horizontal group-propagation displacements,
 beating distance-decay AND pure-advection nulls.

@@ -1,0 +1,185 @@
+{
+  "stamp": {
+    "config_hash": "4825aa9f232d",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:42:21+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 4,
+    "ring_rmax": 10,
+    "align_min_count": 12
+  },
+  "hypothesis": "H-N5",
+  "verdict": "KILL",
+  "median_axis_ratio": 1.0700012850107017,
+  "aligned_within_30deg": "9/20",
+  "chance_alignment": "1/3",
+  "rows": [
+    {
+      "box": "1andes",
+      "t": 0,
+      "axis_ratio": 1.048016710734733,
+      "azimuth": 175.11583652709123,
+      "wind_azimuth": 92.70013427734375,
+      "align_delta_deg": 82.41570224974748
+    },
+    {
+      "box": "3himalaya",
+      "t": 0,
+      "axis_ratio": 1.0309095406074549,
+      "azimuth": 157.47299628169014,
+      "wind_azimuth": 164.74203491210938,
+      "align_delta_deg": 7.269038630419232
+    },
+    {
+      "box": "5south_ocn",
+      "t": 0,
+      "axis_ratio": 1.1345056852162938,
+      "azimuth": 4.693751292338874,
+      "wind_azimuth": 146.3089599609375,
+      "align_delta_deg": 38.384791331401374
+    },
+    {
+      "box": "7natlantic",
+      "t": 0,
+      "axis_ratio": 1.1319624920118119,
+      "azimuth": 74.91122729789595,
+      "wind_azimuth": 152.84983825683594,
+      "align_delta_deg": 77.93861095893999
+    },
+    {
+      "box": "8npacific",
+      "t": 0,
+      "axis_ratio": 1.0782999193697334,
+      "azimuth": 172.7079942406285,
+      "wind_azimuth": 158.03521728515625,
+      "align_delta_deg": 14.672776955472244
+    },
+    {
+      "box": "1andes",
+      "t": 247,
+      "axis_ratio": 1.0348676656658133,
+      "azimuth": 178.09946638288255,
+      "wind_azimuth": 113.0106201171875,
+      "align_delta_deg": 65.08884626569505
+    },
+    {
+      "box": "3himalaya",
+      "t": 247,
+      "axis_ratio": 1.032891101028388,
+      "azimuth": 158.03823413689042,
+      "wind_azimuth": 112.30632019042969,
+      "align_delta_deg": 45.731913946460736
+    },
+    {
+      "box": "5south_ocn",
+      "t": 247,
+      "axis_ratio": 1.1383009355701004,
+      "azimuth": 178.34152316601308,
+      "wind_azimuth": 139.13665771484375,
+      "align_delta_deg": 39.204865451169326
+    },
+    {
+      "box": "7natlantic",
+      "t": 247,
+      "axis_ratio": 1.2260846119093765,
+      "azimuth": 101.43552855915243,
+      "wind_azimuth": 21.323471069335938,
+      "align_delta_deg": 80.1120574898165
+    },
+    {
+      "box": "8npacific",
+      "t": 247,
+      "axis_ratio": 1.0193000144935487,
+      "azimuth": 150.20148056776605,
+      "wind_azimuth": 84.66407012939453,
+      "align_delta_deg": 65.53741043837152
+    },
+    {
+      "box": "1andes",
+      "t": 495,
+      "axis_ratio": 1.006906989463415,
+      "azimuth": 176.94482379162707,
+      "wind_azimuth": 11.910944938659668,
+      "align_delta_deg": 14.966121147032595
+    },
+    {
+      "box": "3himalaya",
+      "t": 495,
+      "axis_ratio": 1.0495053657012476,
+      "azimuth": 102.39571652009886,
+      "wind_azimuth": 155.54295349121094,
+      "align_delta_deg": 53.14723697111208
+    },
+    {
+      "box": "5south_ocn",
+      "t": 495,
+      "axis_ratio": 1.119675560430804,
+      "azimuth": 172.17138429267354,
+      "wind_azimuth": 147.36422729492188,
+      "align_delta_deg": 24.80715699775166
+    },
+    {
+      "box": "7natlantic",
+      "t": 495,
+      "axis_ratio": 1.1630689835903048,
+      "azimuth": 79.53376770944672,
+      "wind_azimuth": 119.2288818359375,
+      "align_delta_deg": 39.69511412649078
+    },
+    {
+      "box": "8npacific",
+      "t": 495,
+      "axis_ratio": 1.1553928001992135,
+      "azimuth": 143.28575212303426,
+      "wind_azimuth": 148.36537170410156,
+      "align_delta_deg": 5.0796195810673055
+    },
+    {
+      "box": "1andes",
+      "t": 743,
+      "axis_ratio": 1.034590965397376,
+      "azimuth": 54.096334547955664,
+      "wind_azimuth": 55.280067443847656,
+      "align_delta_deg": 1.1837328958919926
+    },
+    {
+      "box": "3himalaya",
+      "t": 743,
+      "axis_ratio": 1.06170265065167,
+      "azimuth": 9.559327170885894,
+      "wind_azimuth": 171.33692932128906,
+      "align_delta_deg": 18.22239784959683
+    },
+    {
+      "box": "5south_ocn",
+      "t": 743,
+      "axis_ratio": 1.1242322999203078,
+      "azimuth": 175.49242600421945,
+      "wind_azimuth": 163.61814880371094,
+      "align_delta_deg": 11.874277200508516
+    },
+    {
+      "box": "7natlantic",
+      "t": 743,
+      "axis_ratio": 1.1205116628020788,
+      "azimuth": 102.92867888810757,
+      "wind_azimuth": 110.48324584960938,
+      "align_delta_deg": 7.554566961501806
+    },
+    {
+      "box": "8npacific",
+      "t": 743,
+      "axis_ratio": 1.0249545978278514,
+      "azimuth": 128.24827847169092,
+      "wind_azimuth": 171.41510009765625,
+      "align_delta_deg": 43.166821625965326
+    }
+  ]
+}

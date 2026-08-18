@@ -155,3 +155,46 @@ download by the human (CC BY, free) to verify hotspot boxes + limitations
 wording before paper writing.
 
 Next: A4 replication gate on the released checkpoints.
+
+## [2026-08-18 19:40] EXPERIMENTALIST — A4 replication gate, first pass (released test snapshots)
+
+Infrastructure built and gated first:
+- Vendored the release-tag model code (src/models/anchor/, provenance header).
+- Checkpoint forensics: released ANN checkpoints contain bnorm1..6 entries that
+  the current release code lacks. Resolved via the author's paper-era dev repo:
+  ANN_CNN DEFINED BatchNorm1d modules but never applied them in forward()
+  (calls commented out; bnorm4 even has an impossible width 2*hdim=2952 that
+  would crash if used). Empirical proof: all num_batches_tracked == 0. Loader
+  (src/models/anchor_loader.py) strips them after asserting untrained, loads
+  the rest strictly, infers dims from checkpoint shapes. Discovered en route:
+  the Attention UNet is trained WITHOUT the 3 scalar inputs lat/lon/zs
+  (dataloader comment confirms) -> M1/M2 see orography, M3 does not. Logged as
+  a confound to respect in cross-architecture comparisons.
+- tests/test_anchor_loader.py: all 6 global checkpoints load with exact
+  key/shape agreement, finite outputs, deterministic eval. 7/7 green.
+- Released 1x1 and 3x3 test files verified to contain bitwise-identical
+  instants (Aug 1 2015, hours 5089-5090 of year; "scaling08" = month 8).
+  File-attr level metadata is stale strato text; channel semantics taken from
+  dataloader code. idim/odim coords are fill values.
+
+RESULT (experiments/01_replication_a4.py, 2 snapshots = 16,384 columns,
+results/a4_replication/metrics.json):
+  uvtheta : RMSE 0.796 (M1) > 0.704 (M2) > 0.684 (M3); R2 .18/.36/.39;
+            Hellinger(uw) .111/.091/.052, (vw) .127/.091/.068  -> FULL ordering PASS
+  uvthetaw: RMSE 0.732 (M1) > 0.615 (M2) < 0.627 (M3)  -> M2/M3 RMSE INVERTED;
+            Hellinger(uw) .084/.055/.035 -> ordering PASS; R2 .31/.51/.49
+Verdict: qualitative replication PASSES (M1 clearly worst on every metric;
+distributional ordering M3<=M2<=M1 holds 4/4). The uvthetaw M2-vs-M3 RMSE
+inversion (1.8% relative, 2 snapshots) matches the paper's own "M2 close
+second" and is not called either way at this sample size. Action per master
+prompt: (a) full-month confirmation queued — July 2015 (scaling07) WxC-Bench
+month downloading (~14.9 GB; u,v,theta only, so confirmation covers the
+uvtheta trio; uvthetaw stays snapshot-only and will be reported as such);
+(b) "metric- and sample-dependence of the M2/M3 ranking" promoted to a
+Stage-B hypothesis seed (B-ARCH family).
+
+Enabler for the month eval: published months exist only in 1x1 format, so M2
+needs reconstructed neighborhoods. src/data/neighborhoods.py reverse-engineers
+the stored convention (centered 3x3, lon wrap, ZERO padding beyond poles) and
+tests/test_neighborhoods.py verifies bitwise equality against the released 3x3
+file at both timesteps. Gate green before use.

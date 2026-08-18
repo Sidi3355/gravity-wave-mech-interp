@@ -1,0 +1,10 @@
+# A4 replication gate (Tier 1): released checkpoints vs released 2015 test data
+seed: 0
+weights_root: "C:/Users/sidi0/gwmi_data/weights/nonlocal_gwfluxes"
+test_file_1x1: "C:/Users/sidi0/gwmi_data/weights/nonlocal_gwfluxes/test_files/test_1x1_inputfeatures_u_v_theta_w_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling08.nc"
+test_file_3x3: "C:/Users/sidi0/gwmi_data/weights/nonlocal_gwfluxes/test_files/test_nonlocal_3x3_inputfeatures_u_v_theta_w_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling08.nc"
+feature_sets: [uvtheta, uvthetaw]
+batch_m1: 4096
+batch_m2: 1024
+hellinger_bins: 200
+out: "results/a4_replication/metrics.json"

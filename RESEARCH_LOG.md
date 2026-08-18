@@ -593,3 +593,15 @@ FINAL FUNNEL (30 total):
   DEFERRED (5): A3, N4, A2b (January), L1a, L2 (asset verification)
 Kill rate 62% of screened. Proceeding to CHECKPOINT_C: LEAD ranking draft,
 CRITIC challenge in writing, then PAUSE for human review per master prompt.
+
+## [2026-08-18 23:20] LEAD — CHECKPOINT_C finalized; critic amendments accepted
+
+CRITIC challenged the deep-dive ranking (results/stageC_critic/
+critic_ranking.md): verdict AMEND. All amendments accepted: (1) gate week
+first — G1 qbo1d positive control (now D2's own kill criterion), G2 D1 sanity
+gates (M2-rescaling triviality test; calibration-under-roll layout-boundness
+test); (2) D2 (trust audit) primary, D1 (calibration mechanism) secondary
+with position-encoding fused as mandatory confound arm; (3) over-claim
+wordings in the checkpoint fixed; (4) January multiplicity ledger adopted —
+every January-month test pre-registered before the file is opened.
+CHECKPOINT_C.md complete. PAUSED for human review per master prompt §6.

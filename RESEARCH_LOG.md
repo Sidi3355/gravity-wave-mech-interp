@@ -884,3 +884,16 @@ variance prior, formed at bottleneck depth, applied through the decoder,
 concentrated over climatological hotspots (D1-A), NOT implementable as
 output rescaling (G2i), carrying 62% of variance calibration (D1-A).
 [PENDING-J1] January confirmation of the headline numbers.
+
+## [2026-08-19 04:00] LEAD — PRE-REGISTRATION: January conversion + sanity gate
+
+The January WxC file will carry its own per-month constants (as July did).
+Conversion assumption (pre-registered): identical WxC pipeline — u/v applied
+divisor = printed sigma (1x, despite "3x" label wording), outputs honest
+per-file cube-root constants; conversion via the validated affine machinery
+with January's parsed constants. EMPIRICAL GATE before any J1-J4 analysis:
+on 4 evenly-sampled January timesteps, converted-input R2 must be >= 0.25
+for M3 and >= 0.10 for M1 (paper-consistent skill); if unmet, STOP and
+diagnose — no January results may be produced from a suspect conversion.
+detect_source_convention generalized to parse unknown WxC-style files and
+return their constants (still fails loud on unparseable attributes).

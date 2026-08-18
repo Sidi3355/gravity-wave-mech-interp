@@ -1,0 +1,15 @@
+# A4 full-month confirmation: July 2015 (WxC-Bench scaling01), uvtheta trio.
+# Also produces the shared per-column artifacts consumed by Stage-C screens
+# (H-A2, H-A5, H-F1, H-F2, H-F3, H-P4).
+seed: 0
+month_file: "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling01.nc"
+weights_root: "C:/Users/sidi0/gwmi_data/weights/nonlocal_gwfluxes"
+features: "uvtheta"
+batch_m1: 8192
+batch_m2: 1024
+# fixed physical-space histogram edges (must not change across resume)
+hist_range: 4.0        # +/- N m^-2 (Pa); values clipped into edge bins
+hist_bins: 400
+checkpoint_every: 24   # timesteps between state saves
+out_dir: "results/a4_january"
+arrays_dir: "results/a4_january/arrays"   # gitignored large outputs

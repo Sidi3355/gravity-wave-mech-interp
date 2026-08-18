@@ -1,0 +1,116 @@
+{
+  "stamp": {
+    "config_hash": "a06e680a1bb5",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:10:51+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "month_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "weights_root": "C:/Users/sidi0/gwmi_data/weights/nonlocal_gwfluxes",
+    "features": "uvtheta",
+    "batch_m1": 8192,
+    "batch_m2": 1024,
+    "hist_range": 4.0,
+    "hist_bins": 400,
+    "checkpoint_every": 24,
+    "out_dir": "results/a4_fullmonth",
+    "arrays_dir": "results/a4_fullmonth/arrays"
+  },
+  "n_timesteps": 744,
+  "month": "2015-07",
+  "features": "uvtheta",
+  "hotspot_boxes": {
+    "1andes": [
+      3,
+      21,
+      96,
+      113
+    ],
+    "2scand": [
+      45,
+      58,
+      0,
+      12
+    ],
+    "3himalaya": [
+      41,
+      54,
+      26,
+      44
+    ],
+    "4newfound": [
+      47,
+      58,
+      103,
+      119
+    ],
+    "5south_ocn": [
+      8,
+      17,
+      10,
+      25
+    ],
+    "6se_asia": [
+      33,
+      42,
+      32,
+      49
+    ],
+    "7natlantic": [
+      31,
+      44,
+      112,
+      124
+    ],
+    "8npacific": [
+      27,
+      47,
+      67,
+      87
+    ]
+  },
+  "models": {
+    "m1": {
+      "rmse_norm": 0.7844440164965627,
+      "rmse_norm_areaweighted": 0.7881983375312387,
+      "hellinger_uw_phys": 0.06436208464833826,
+      "hellinger_vw_phys": 0.12637885664946003,
+      "variance_ratio_phys": 0.3596295279811803,
+      "rmse_t_mean": 0.7842360947241065,
+      "rmse_t_std": 0.018059915971371528
+    },
+    "m2": {
+      "rmse_norm": 0.6979748055422045,
+      "rmse_norm_areaweighted": 0.6957622977989961,
+      "hellinger_uw_phys": 0.04931006422318873,
+      "hellinger_vw_phys": 0.0970462961062335,
+      "variance_ratio_phys": 0.3631705058882169,
+      "rmse_t_mean": 0.6977880339949362,
+      "rmse_t_std": 0.01614583821166001
+    },
+    "m3": {
+      "rmse_norm": 0.6775147713462097,
+      "rmse_norm_areaweighted": 0.676408673144643,
+      "hellinger_uw_phys": 0.03986114840722088,
+      "hellinger_vw_phys": 0.04327368262349229,
+      "variance_ratio_phys": 1.0663353720581092,
+      "rmse_t_mean": 0.6773570534843271,
+      "rmse_t_std": 0.014618078242284113
+    }
+  },
+  "ordering_rmse": true,
+  "ordering_hellinger_uw": true,
+  "m2_minus_m3_rmse_t": {
+    "mean": 0.020430980510609126,
+    "ci95": [
+      0.020177891119433345,
+      0.02069166270034608
+    ],
+    "frac_timesteps_m3_better": 1.0
+  }
+}

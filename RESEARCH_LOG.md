@@ -324,3 +324,29 @@ includes 2015 months in training — superseded by training.py's explicit
 year arrays; noted to avoid future confusion.
 
 Launching the full-month A4 confirmation now (~35 min with conversion).
+
+## [2026-08-18 21:15] EXPERIMENTALIST — A4 FULL-MONTH CONFIRMATION: GATE GREEN
+
+July 2015, all 744 held-out hourly timesteps, uvtheta trio, WxC->model
+conversion applied (results/a4_fullmonth/metrics.json):
+- RMSE(norm): M3 0.6775 < M2 0.6980 < M1 0.7844. Area-weighted: same ordering
+  (0.6764/0.6958/0.7882) -> not weighting-sensitive (C-2 satisfied).
+- Hellinger(phys): uw 0.0399/0.0493/0.0644, vw 0.0433/0.0970/0.1264 — full
+  ordering M3 < M2 < M1 on both components.
+- Paired per-timestep M2-minus-M3 RMSE: mean +0.0204, bootstrap 95% CI
+  [0.0202, 0.0207], M3 better in 744/744 timesteps. The 2-snapshot uvthetaw
+  RMSE inversion (logged 2026-08-18 19:40) does NOT generalize to the uvtheta
+  setting at month scale; it remains an unresolved snapshot-only observation
+  for uvthetaw (untestable at month scale, no public w months).
+- H-A5 (rewritten) preview: physical variance ratios M1 0.360, M2 0.363,
+  M3 1.066. The single-column and 3x3 models under-disperse flux variance
+  ~2.75x; the UNet is nearly variance-calibrated. Formal H-A5 verdict when
+  tail ratios are extracted from the histograms.
+A4 (Tier-1 adapted) REPLICATION GATE: PASS. Stage A fully complete.
+
+Ops note: the background run was killed once and hit a OneDrive file-lock
+PermissionError on the state file at t=743; save_state now retries and falls
+back to non-atomic write. Resume-from-checkpoint worked as designed both times.
+
+Stage C wave 1 launching now (pre-registered thresholds in HYPOTHESIS_TABLE
+amendments): H-N1, H-I2, H-N3, C-5, H-P4, H-A1 on July data.

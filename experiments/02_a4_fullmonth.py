@@ -189,7 +189,16 @@ def main():
                 payload[f"{m}_{k}"] = v
         tmp = state_path.with_suffix(".tmp.npz")
         np.savez_compressed(tmp, **payload)
-        tmp.replace(state_path)
+        # OneDrive sync can hold a lock on state_path; retry, then fall back
+        # to a direct (non-atomic) write rather than crash 2 min from the end.
+        for attempt in range(6):
+            try:
+                tmp.replace(state_path)
+                return
+            except PermissionError:
+                time.sleep(2.0 * (attempt + 1))
+        np.savez_compressed(state_path, **payload)
+        tmp.unlink(missing_ok=True)
 
     wall = time.time()
     for t in range(t0, n_time):

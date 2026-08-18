@@ -897,3 +897,16 @@ for M3 and >= 0.10 for M1 (paper-consistent skill); if unmet, STOP and
 diagnose — no January results may be produced from a suspect conversion.
 detect_source_convention generalized to parse unknown WxC-style files and
 return their constants (still fails loud on unparseable attributes).
+
+## [2026-08-19 05:00] EXPERIMENTALIST — P2' rotation robustness + repro targets
+
+P2' on M1-uvthetaw (August): circular alignment 0.228, mean angle error 74deg
+(n=121 admissible) — replicates uvtheta (0.220, 77deg) almost exactly. The
+drag-wind misalignment is robust across checkpoint and input variant. D2
+robustness matrix complete on all three graft families (reflection,
+amplitude, rotation). Makefile added (reproduce-figures, test,
+reproduce-results). Five core figures generated from stamped results and
+visually checked; fig6 corrected mid-review to show the effect-conditioned
+positive control (raw unconditioned number would have contradicted the
+logged verdict; conditioned diagnostic persisted to
+results/gateweek_g1/effect_conditioned.json).

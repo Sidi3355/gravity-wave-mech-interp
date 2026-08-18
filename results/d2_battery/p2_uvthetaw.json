@@ -1,0 +1,19 @@
+{
+  "stamp": {
+    "config_hash": "4243f6828f40",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T22:50:35+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "n_cols": 40
+  },
+  "arm": "P2' rotation, M1-uvthetaw (Aug)",
+  "circular_alignment": 0.22819726850375807,
+  "mean_abs_angle_error_deg": 74.01058274261223,
+  "n_admissible": 121,
+  "n_ood_excluded": 159
+}

@@ -605,3 +605,50 @@ with position-encoding fused as mandatory confound arm; (3) over-claim
 wordings in the checkpoint fixed; (4) January multiplicity ledger adopted —
 every January-month test pre-registered before the file is opened.
 CHECKPOINT_C.md complete. PAUSED for human review per master prompt §6.
+
+## [2026-08-18 23:55] LEAD — HUMAN DECISION at CHECKPOINT_C: recommendation approved
+
+The human reviewed CHECKPOINT_C and approved the amended recommendation
+("ok, continue with your recommendation"). Stage D begins: gate week (G1,
+G2), then D2 primary (physics-trust audit) + D1 secondary (calibration
+mechanism, position-encoding confound arm fused).
+
+## [2026-08-18 23:56] LEAD — STAGE-D PRE-REGISTRATION: gate week
+
+G2(i) TRIVIALITY TEST (D1 sanity gate). Hypothesis: M3's calibration ladder
+is reproducible by a per-output-channel scalar rescaling of M2. Plan: gains
+g_c = std(truth_c)/std(M2pred_c) fitted in normalized (cube-root) space on
+12 train timesteps (even indices of the 24-sample July grid); applied to the
+12 disjoint eval timesteps; metrics = physical variance ratio, |flux|
+quantile ratios P90/P99/P99.9 (per-timestep bootstrap as in screen_a5),
+Hellinger(uw,vw), RMSE-norm. PRE-REGISTERED CRITERION: "calibration is
+trivial rescaling" if rescaled-M2 P99 ratio within +-0.10 of M3's AND
+Hellinger(uw) within 0.01 of M3's. If triggered -> D1 reframes to "why does
+M3 learn output-scale calibration and M2 not" (mechanism search moves to
+training dynamics/architecture, not internal circuitry). RMSE cost of
+rescaling reported alongside.
+
+G2(ii) CALIBRATION-UNDER-ROLL (layout-boundness gate). Hypothesis: M3's
+variance/tail calibration survives longitude rolling of the input map
+(prediction unrolled before scoring). Plan: rolls of 64 (primary) and 32
+(secondary) cells, same 24 July timesteps, same ladder metrics. M1 is
+roll-invariant by construction; M2 is roll-equivariant (constructor wraps),
+so only M3 is informative. PRE-REGISTERED CRITERION: calibration is
+"substantially layout-bound" if rolled-M3's P99 ratio moves >= 50% of the
+way from M3's toward M2's value, OR rolled variance ratio < 0.70. If
+triggered -> paper finding 2 reframes (calibration partly = padding-derived
+geographic variance climatology) and D1's mechanism search must condition on
+position.
+
+G1 QBO1D POSITIVE CONTROL (D2 gate; pre-registration of the exact graft
+protocol follows AFTER code inspection of the qbo1d testbed - the graft
+design depends on its I/O, and will be logged before any G1 run. Its role:
+if the released Pahlavan CNN fails physics grafts in a testbed where the
+physics is known-learnable, the audit methodology is invalidated and D2 is
+KILLED; if it passes, the M1/M3 negatives stand on validated methodology.)
+
+Multiplicity ledger for January 2015 (pre-committed, file not yet opened):
+J1 = A4-style ordering + calibration ladder confirmation (D1); J2 = A2b
+shear/orography concentration; J3 = D2 graft-protocol confirmation on
+January columns; J4 = P4 seam-excess replication. No other January tests
+without a logged amendment BEFORE opening the file.

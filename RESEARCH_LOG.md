@@ -847,3 +847,19 @@ D2-B (results/d2_battery/):
   statistics; attribution needs the January dose-response (beta sweep).
 
 WRITER activates: PAPER_DRAFT.md skeleton next.
+
+## [2026-08-19 03:15] LEAD — PRE-REGISTRATION: D1-B depth-resolved position localization
+
+Cumulative roll-patching (roll r = 64): run M3 on rolled input; at encoder
+sites conv1..conv5 (cumulative sets {conv1}, {conv1,conv2}, ..., all five),
+replace activations with the ROLL-ALIGNED activations captured from the
+unrolled forward (rolled by r scaled to each site's lon resolution:
+64/32/16/8/4 cells). Predictions unrolled before scoring. Metric: restoration
+fraction of the variance ratio, rest(k) =
+(var_patch(k) - var_rolled) / (var_base - var_rolled), same for P99.9.
+SANITY ENDPOINT (must hold or the experiment is invalid): patching all five
+encoder sites reproduces the base prediction (restoration ~= 1), since every
+decoder input then carries unrolled-consistent features.
+READING: the depth at which restoration jumps localizes where the
+position-dependent computation enters. 12 July eval timesteps (as G2/D1-A).
+Descriptive; no kill threshold; January not involved.

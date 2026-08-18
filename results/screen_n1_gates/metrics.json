@@ -1,0 +1,106 @@
+{
+  "stamp": {
+    "config_hash": "4f084eacf3a9",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:11:50+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "out_dir": "results/screen_n1_gates"
+  },
+  "hypothesis": "H-N1",
+  "verdict": "PASS",
+  "ratio_spatial_finest": 35.061063278797626,
+  "ratio_temporal_finest": 20.09729810071969,
+  "n_timesteps_used": 24,
+  "real": {
+    "attn2.Psi": {
+      "spatial_std": 0.10261597484350204,
+      "temporal_std": 0.030915312469005585,
+      "mean_alpha": 0.6367976069450378,
+      "shape": [
+        24,
+        64,
+        128
+      ]
+    },
+    "attn3.Psi": {
+      "spatial_std": 0.11850159615278244,
+      "temporal_std": 0.030852561816573143,
+      "mean_alpha": 0.4052615165710449,
+      "shape": [
+        24,
+        32,
+        64
+      ]
+    },
+    "attn4.Psi": {
+      "spatial_std": 0.2157241851091385,
+      "temporal_std": 0.05833551287651062,
+      "mean_alpha": 0.3431748151779175,
+      "shape": [
+        24,
+        16,
+        32
+      ]
+    },
+    "attn5.Psi": {
+      "spatial_std": 0.28054261207580566,
+      "temporal_std": 0.07106782495975494,
+      "mean_alpha": 0.4583369791507721,
+      "shape": [
+        24,
+        8,
+        16
+      ]
+    }
+  },
+  "control": {
+    "attn2.Psi": {
+      "spatial_std": 0.002926778746768832,
+      "temporal_std": 0.0015382820274680853,
+      "mean_alpha": 0.5175294280052185,
+      "shape": [
+        24,
+        64,
+        128
+      ]
+    },
+    "attn3.Psi": {
+      "spatial_std": 0.00043524763896130025,
+      "temporal_std": 0.00017307116650044918,
+      "mean_alpha": 0.5037999153137207,
+      "shape": [
+        24,
+        32,
+        64
+      ]
+    },
+    "attn4.Psi": {
+      "spatial_std": 0.0006392306531779468,
+      "temporal_std": 3.252666647313163e-05,
+      "mean_alpha": 0.504585325717926,
+      "shape": [
+        24,
+        16,
+        32
+      ]
+    },
+    "attn5.Psi": {
+      "spatial_std": 0.0004483115335460752,
+      "temporal_std": 3.70702582586091e-06,
+      "mean_alpha": 0.5013976693153381,
+      "shape": [
+        24,
+        8,
+        16
+      ]
+    }
+  }
+}

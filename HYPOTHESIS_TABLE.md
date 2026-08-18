@@ -17,7 +17,7 @@ UPSTREAM neighbors of the 3x3 stencil (w.r.t. local background wind).
 - Kill: ablation impact uniform across neighbors after wind conditioning.
 - Payoff: information routing follows advection — mechanism, not just stencil.
 
-**H-I2** [GEN] (T3) M2's gain is not mere spatial smoothing: replacing all 8
+**H-I2** [SCREEN-PASS 2026-08-18] (T3) M2's gain is not mere spatial smoothing: replacing all 8
 neighbors with copies of the center column destroys most of the M1->M2 gap.
 - Cheapest: forward pass with clamped neighborhoods (constructor exists).
 - Kill: clamped M2 ~= full M2 (gain then IS local/smoothing — report as such).
@@ -90,7 +90,7 @@ readout per layer shows a sharp skill jump in the last two MLP layers.
 
 ## B-ARCH — where architecture gains live
 
-**H-A1** [GEN] (T6) A LINEAR model on the 3x3 stencil closes >=50% of the
+**H-A1** [SCREEN-KILL 2026-08-18: linear closes -47% of gap] (T6) A LINEAR model on the 3x3 stencil closes >=50% of the
 M1->M2 gap (the first nonlocality increment is largely linear context).
 - Cheapest: closed-form ridge on flattened stencils, July subsample.
 - Kill: linear closes <20%.
@@ -128,7 +128,7 @@ pointwise RMSE for distributional fidelity (variance/tail calibration).
 
 ## B-ATTN — what the skip-gates do (alpha fields, 4 scales)
 
-**H-N1** [GEN] (T5) The gates are not degenerate: alpha maps are spatially
+**H-N1** [SCREEN-PASS 2026-08-18] (T5) The gates are not degenerate: alpha maps are spatially
 structured and input-dependent (vs near-uniform saturation).
 - Cheapest: alpha statistics on snapshots vs random-init control net.
 - Kill: alpha ~ uniform/static. (Then the gain lives in the trunk — pivotal
@@ -141,7 +141,7 @@ with hotspot masks/flux magnitude beyond a distance-decay null.
 - Kill: no excess over null.
 - Payoff: gates as source-selectors — interpretable model behavior.
 
-**H-N3** [GEN] (T5->T3) Gate structure is causally needed scale-selectively:
+**H-N3** [SCREEN-PASS 2026-08-18] (T5->T3) Gate structure is causally needed scale-selectively:
 flattening alpha to its spatial mean at one level degrades hotspot skill most
 at the level matching source scales; keeping alpha only near hotspots retains
 most skill (necessity + sufficiency pair).
@@ -233,7 +233,7 @@ saturates/breaks out-of-distribution: flux vs forcing amplitude is monotone
 - Kill: flat or erratic response in-distribution.
 - Payoff: extrapolation envelope of the surrogate on controlled physics.
 
-**H-P4** [GEN] (T3, discovered in code) M3 has a longitude SEAM artifact: its
+**H-P4** [SCREEN-PASS 2026-08-18, story refined: seam moves + global layout-dependence -> implicit position encoding] (T3, discovered in code) M3 has a longitude SEAM artifact: its
 convs zero-pad longitude although the field is periodic, so skill dips near
 lon 0/360, and rolling the input map moves the dip with the seam.
 - Cheapest: error-vs-longitude from month run + rolled-input causal check.

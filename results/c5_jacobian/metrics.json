@@ -1,0 +1,64 @@
+{
+  "stamp": {
+    "config_hash": "3263490601cf",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:16:51+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 6,
+    "cols_per_timestep": 256,
+    "output_levels": [
+      20,
+      60,
+      100
+    ],
+    "out_dir": "results/c5_jacobian"
+  },
+  "control": "C-5",
+  "output_levels_uw": [
+    20,
+    60,
+    100
+  ],
+  "n_columns": 1536,
+  "block_mean_abs_jacobian": {
+    "20": {
+      "scalars": 1.260013222694397,
+      "u": 0.03834179416298866,
+      "v": 0.021727997809648514,
+      "theta": 0.05433289706707001
+    },
+    "60": {
+      "scalars": 3.4616262912750244,
+      "u": 0.12128061056137085,
+      "v": 0.0688491091132164,
+      "theta": 0.17660631239414215
+    },
+    "100": {
+      "scalars": 4.769763469696045,
+      "u": 0.17940741777420044,
+      "v": 0.10150199383497238,
+      "theta": 0.19668105244636536
+    }
+  },
+  "self_level_vs_block_mean": {
+    "20": {
+      "u_at_same_level": 0.009345256723463535,
+      "u_block_mean": 0.03834179416298866
+    },
+    "60": {
+      "u_at_same_level": 0.19857026636600494,
+      "u_block_mean": 0.12128061056137085
+    },
+    "100": {
+      "u_at_same_level": 0.503580629825592,
+      "u_block_mean": 0.17940741777420044
+    }
+  }
+}

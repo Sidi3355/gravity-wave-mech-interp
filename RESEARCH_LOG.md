@@ -350,3 +350,68 @@ back to non-atomic write. Resume-from-checkpoint worked as designed both times.
 
 Stage C wave 1 launching now (pre-registered thresholds in HYPOTHESIS_TABLE
 amendments): H-N1, H-I2, H-N3, C-5, H-P4, H-A1 on July data.
+
+## [2026-08-18 21:40] EXPERIMENTALIST + LEAD — Stage C wave 1 complete: 4 pass, 1 kill, 1 control
+
+All on July 2015 (screening month), pre-registered thresholds (table
+amendments 2026-08-18). Full metrics in results/screen_*/metrics.json.
+
+H-N1 (gates degenerate?) SCREEN-PASS. Trained-vs-random-init ratios at the
+finest gate: spatial structure 35x, temporal input-sensitivity 20x; mean
+alpha 0.34-0.64 (no saturation). Structure INCREASES with gate coarseness
+(spat_std 0.10 -> 0.28). B-ATTN family unlocked.
+
+H-I2 (context = smoothing?) SCREEN-PASS, decisive. Clamped-neighborhood M2:
+RMSE 0.845 > M1 0.784 (recovery of the M1->M2 gap = -0.70; per-timestep
+range -0.83..-0.55, 24/24 consistent). Horizontal structure is INFORMATION,
+not averaging; M2 has no local fallback mode. C-3: corr(M2clamp, M1) = 0.56.
+Caveat (logged): uniform patches are mildly OOD for M2; the negative recovery
+overstates information loss by an unknown margin — the kill test is one-sided
+against this caveat (it could only have inflated recovery, not suppressed it).
+
+H-N3 (gates causally needed?) SCREEN-PASS with clean scale gradient:
+flattening alpha to spatial mean costs global RMSE +4.3% (finest gate),
++1.4%, +0.3%, +0.1% (coarsest). The causal action is at full resolution.
+NOTE: hotspot delta (+2.4%) < global (+4.3%) — the finest gate matters
+BROADLY, not just at hotspots; refines H-N2's expectation.
+
+H-P4 (longitude seam) SCREEN-PASS, story refined by the causal test.
+Month-scale: M3-specific seam excess +5.1% (M1 -1.2%, M2 -0.3%). Roll test
+ABSOLUTE-terms analysis (the screen's coded relative-to-own-interior metric
+was confounded and is superseded — deviation logged here, analysis from saved
+profiles.npz): (a) the seam excess MOVES with the padding boundary (date-line
+columns spike +24% under roll; Greenwich edge relief -5%); (b) ADDITIONALLY
+rolling degrades M3 globally +15% RMSE — the network is layout-dependent far
+beyond the seam. Since convs are translation-equivariant except padding, M3
+evidently derives IMPLICIT ABSOLUTE POSITION from boundary geometry (cf.
+Islam et al. 2020) and uses it as a de facto geography channel. Consequences:
+(i) new mechanism thread — "how much of M3's advantage is implicit positional
+encoding?" (folds into H-R2/H-R3 interpretation: position-from-padding is a
+CONFOUND for 'M3 infers orography from flow'; H-R2 design must add a
+rolled-input probe arm to separate position from flow-state information);
+(ii) deployment-relevant artifact finding stands.
+C-4 (lat edges): south-edge excess exists for ALL models (+11-18% vs own
+interior; Antarctic winter physics), north edge better for all — no
+M3-specific latitude artifact.
+
+H-A1 (linear stencil closes gap?) SCREEN-KILL. Ridge on flattened 3x3
+stencils: RMSE 0.827 vs M1 0.786, M2 0.700 — closes -47% of the gap (worse
+than the column DNN). Even the first nonlocality increment is deeply
+nonlinear. Evidence caveat: ridge fit on ~40k July columns vs models' 3-year
+training set; a stronger linear baseline could narrow but plausibly not
+reverse a -47% deficit. Consequence: H-I3 (gradient features) runs with a
+NONLINEAR small-MLP carrier as specified, not linear.
+
+C-5 (M1 vertical Jacobian calibration) complete, two results:
+(1) M1's |Jacobian| is dominated ~25x by the 3 scalar inputs (lat/lon/zs)
+    over u/v/theta blocks at all tested output levels — heavy explicit
+    geography reliance (sharpens H-R3; contrast with M3's implicit position
+    channel from H-P4).
+(2) Vertical influence structure is physical: near-surface flux is
+    level-local (same-level u sensitivity 0.50 vs block mean 0.18); upper
+    flux depends on the whole column below (0.009 vs 0.038) — the filtering
+    integral of GW theory. T4 tooling calibrated.
+
+H-A5 formal verdict pending (tail extraction from saved histograms; variance
+ratios M1 0.360 / M2 0.363 / M3 1.066 already recorded). Funnel: 29 generated,
+5 screened (4 pass, 1 kill), 1 measurement done, 2 deferred, 2 asset-blocked.

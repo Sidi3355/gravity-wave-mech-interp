@@ -1,0 +1,51 @@
+{
+  "stamp": {
+    "config_hash": "a92cc30c7405",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:17:35+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "month_artifacts": "results/a4_fullmonth/arrays/fullmonth_artifacts.npz",
+    "n_timesteps": 24,
+    "roll_cells": 64,
+    "out_dir": "results/screen_p4_seam"
+  },
+  "hypothesis": "H-P4",
+  "verdict": "PASS",
+  "month_seam_excess": {
+    "m1": -0.012199301806727236,
+    "m2": -0.0025913201014765574,
+    "m3": 0.05103457781099685
+  },
+  "roll_test": {
+    "excess_base_at_seam": 0.05735598868212466,
+    "excess_rolled_at_moved_seam": -0.030764438984572817,
+    "excess_rolled_at_original_seam": -0.0778287235844608,
+    "seam_moves_with_roll": false,
+    "roll_cells": 64,
+    "n_timesteps": 24
+  },
+  "c4_latitude_edges": {
+    "m1": {
+      "edge_rows_0_1": 0.8697246689132967,
+      "edge_rows_62_63": 0.4797814436123159,
+      "interior_rows": 0.7825033108730713
+    },
+    "m2": {
+      "edge_rows_0_1": 0.8138250522405792,
+      "edge_rows_62_63": 0.4749090886044617,
+      "interior_rows": 0.690304977821889
+    },
+    "m3": {
+      "edge_rows_0_1": 0.7908607151651665,
+      "edge_rows_62_63": 0.49333024233235623,
+      "interior_rows": 0.6699857174132022
+    }
+  }
+}

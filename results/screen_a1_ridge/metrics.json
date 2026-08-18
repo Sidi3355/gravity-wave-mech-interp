@@ -1,0 +1,43 @@
+{
+  "stamp": {
+    "config_hash": "44924aaaa884",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:20:27+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "cols_per_timestep": 4096,
+    "lambda_grid": [
+      0.01,
+      1.0,
+      100.0,
+      10000.0
+    ],
+    "out_dir": "results/screen_a1_ridge"
+  },
+  "hypothesis": "H-A1",
+  "verdict": "KILL",
+  "rmse_norm": {
+    "ridge": 0.8270035540035829,
+    "m1": 0.7860322817376519,
+    "m2": 0.6995847695876978
+  },
+  "m1_m2_gap": 0.08644751214995416,
+  "fraction_of_gap_closed_by_linear_stencil": -0.47394391402335717,
+  "lambda": 100.0,
+  "lambda_val_rmse": {
+    "0.01": 0.8337770864536131,
+    "1.0": 0.8220819533829395,
+    "100.0": 0.8187504319208696,
+    "10000.0": 0.8250505543988487
+  },
+  "n_train_timesteps": 12,
+  "n_eval_timesteps": 12,
+  "cols_per_train_timestep": 4096
+}

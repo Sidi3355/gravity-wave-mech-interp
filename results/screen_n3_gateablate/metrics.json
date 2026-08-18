@@ -1,0 +1,43 @@
+{
+  "stamp": {
+    "config_hash": "2aaf0d52765f",
+    "seed": 0,
+    "timestamp_utc": "2026-08-18T20:16:28+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling07.nc",
+    "n_timesteps": 24,
+    "out_dir": "results/screen_n3_gateablate"
+  },
+  "hypothesis": "H-N3",
+  "verdict": "PASS",
+  "base_rmse": {
+    "global": 0.6771509448687235,
+    "hotspot": 0.6921300788720449
+  },
+  "per_level": {
+    "attn2.Psi": {
+      "delta_global_rmse_frac": 0.04281886283903158,
+      "delta_hotspot_rmse_frac": 0.024051289831316103
+    },
+    "attn3.Psi": {
+      "delta_global_rmse_frac": 0.013978281223854694,
+      "delta_hotspot_rmse_frac": 0.014277466466309008
+    },
+    "attn4.Psi": {
+      "delta_global_rmse_frac": 0.0026283537266738044,
+      "delta_hotspot_rmse_frac": 0.002903457976970447
+    },
+    "attn5.Psi": {
+      "delta_global_rmse_frac": 0.0011134172891753558,
+      "delta_hotspot_rmse_frac": 0.0018968462194224323
+    }
+  },
+  "n_timesteps": 24,
+  "intervention": "alpha -> spatial mean (per sample), one level at a time"
+}

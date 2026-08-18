@@ -652,3 +652,34 @@ J1 = A4-style ordering + calibration ladder confirmation (D1); J2 = A2b
 shear/orography concentration; J3 = D2 graft-protocol confirmation on
 January columns; J4 = P4 seam-excess replication. No other January tests
 without a logged amendment BEFORE opening the file.
+
+## [2026-08-19 00:15] EXPERIMENTALIST + LEAD — G2 GATES: calibration is NOT
+## trivial rescaling, and IS substantially layout-bound (criterion triggered)
+
+results/gateweek_g2/metrics.json; both criteria pre-registered 23:56.
+
+G2(i) NOT TRIVIAL: per-channel variance-matching gains on M2 explode
+physically (P99 ratio 3.19, variance ratio 11.9, RMSE 1.14) because
+cube-root-space variance matching cubes into tail inflation. Notably the
+rescaled M2 achieves BETTER Hellinger (0.048) than M3 (0.075) while being
+physically absurd -> METHODOLOGICAL FINDING: Hellinger on pooled histograms
+is gameable by naive inflation; the quantile-ratio ladder is the
+discriminating calibration metric. (Paper methods point; also a caveat on
+distributional-skill claims made on Hellinger alone.)
+
+G2(ii) LAYOUT-BOUND: TRIGGERED (variance clause). Rolled-input M3 (roll 64;
+roll 32 agrees): variance ratio 1.098 -> 0.333 (< 0.70 threshold; below even
+M2's 0.396), P99.9 1.012 -> 0.597 (below M2's 0.621), P99 0.698 -> 0.563
+(45.7% of the way toward M2). Marginal Hellinger stays ~0.074 under roll
+while the tails collapse — again the ladder discriminates.
+READING: M3's variance/tail calibration is substantially a POSITION-KEYED
+GEOGRAPHIC VARIANCE CLIMATOLOGY (implicit position from padding, cf. P4),
+not a flow-computed property. Per pre-registration: paper finding 2
+reframes; D1's mechanism question becomes a DECOMPOSITION question — how
+much calibration is position-driven vs flow-driven, where does the position
+signal enter (depth-resolved roll-patching), and what remains for "physics".
+D1 and the position-encoding thread are now formally ONE investigation (as
+the critic's amendment anticipated).
+
+Next: G1 (qbo1d positive control for D2) — code inspection, then
+pre-registration, then run.

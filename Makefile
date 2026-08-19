@@ -31,3 +31,7 @@ reproduce-results:
 	$(PY) experiments/20_d1_rollensemble.py
 	$(PY) experiments/22_d1_rollpatch.py
 	$(PY) experiments/21_d2_battery.py
+
+paper:
+	$(PY) experiments/25_tables.py
+	cd paper && C:/Users/sidi0/gwmi_data/tectonic.exe main.tex

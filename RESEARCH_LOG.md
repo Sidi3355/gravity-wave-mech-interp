@@ -1004,3 +1004,19 @@ summary: DONE (prose v3). 5. make reproduce-figures: WORKS. 6. RESEARCH_LOG
 true story: THIS FILE. Remaining optional: LaTeX port, per-patch
 linear-theory expectations (stated future work), upstream advisory to
 WxC-Bench/authors.
+
+## [2026-08-19 11:40] WRITER — LaTeX submission draft compiled (8 pages)
+
+paper/main.tex: full two-column LaTeX paper (article class; preamble marked
+for one-block swap to a conference style file). Methods formalized with
+equations (normalization/conversion, quantile-ratio ladder, position share,
+roll-patching, graft definitions, admissibility); 4 tables generated
+PROGRAMMATICALLY from stamped results (experiments/25_tables.py — no hand
+transcription): replication (both months, paired CIs), calibration ladders
+(all CIs), roll decomposition + localization, graft battery (all n's, IQRs,
+dose distributions); 5 figures embedded with full captions; impact
+statement; 17-entry bibliography; Appendix A = complete 30-row funnel
+table; Appendix B = reproducibility. Compiled with tectonic 0.15
+(main.pdf, 8 pages); pages visually inspected. `make paper` target added.
+One generator bug caught at compile (unescaped % in a table) — fixed in the
+generator, not the output.

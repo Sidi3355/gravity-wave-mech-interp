@@ -979,3 +979,28 @@ CRITIC's final draft review (results/stageD_critic/critic_final_draft.md):
   dose caps, patch-arm control coverage); attack list expanded (1b, 6).
 Verdict after fixes: READY FOR PROSE EXPANSION per critic's condition
 (F1-F8 were the blocking set; all 11 applied).
+
+## [2026-08-19 10:30] WRITER — Full prose draft v3 complete
+
+PAPER_DRAFT.md expanded to complete ICML-structure prose: abstract v2 ->
+retained; full introduction with 4 contributions; related work (4 strands);
+setting incl. the reproducibility hazard and replication gate; methods
+(funnel, multiplicity, techniques, positive control with scope limits);
+results in 5 subsections; funnel summary table; limitations (8 items);
+reproducibility statement; conclusion; appendix pointers; reviewer-attack
+list (7 entries with honest responses). All numbers carried over from the
+critic-verified v2 set; no new claims introduced. January figure panels
+added (fig2 two-month ladder from stamped j1_tails_january; fig4 January M3
+seam overlay). J1 ladder computation logged as within J1's registered scope
+("calibration ladder confirmation").
+
+Program deliverables status vs master prompt definition-of-done:
+1. ASSETS/tier/replication/physics gates: DONE. 2. Funnel complete: DONE
+(30 hypotheses, all resolved or deferred with reasons). 3. Deep dives with
+causal triangulation: DONE (D1: roll ensemble + roll-patching + regional +
+January; D2: 3 graft families x robustness axes + positive control +
+dose-response). 4. Paper draft with limitations, attack list, plain
+summary: DONE (prose v3). 5. make reproduce-figures: WORKS. 6. RESEARCH_LOG
+true story: THIS FILE. Remaining optional: LaTeX port, per-patch
+linear-theory expectations (stated future work), upstream advisory to
+WxC-Bench/authors.

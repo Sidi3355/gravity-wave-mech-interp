@@ -45,28 +45,33 @@ def load(p):
 
 # ---------------- F2: calibration ladder ----------------
 def fig_ladder():
-    a5 = load("results/screen_a5_tails/metrics.json")["tail_ratios_pred_over_true"]
+    months = [("July 2015", "results/screen_a5_tails/metrics.json", True),
+              ("January 2015", "results/j1_tails_january/metrics.json", False)]
     g2 = load("results/gateweek_g2/metrics.json")["arms"]
     qs = ["p0.9", "p0.99", "p0.999"]
     xpos = np.arange(3)
-    fig, ax = plt.subplots(figsize=(4.6, 3.2))
-    for off, m, label in ((-0.18, "m1", "M1 (column)"),
-                          (0.0, "m2", "M2 (3x3)"), (0.18, "m3", "M3 (U-Net)")):
-        y = [a5[m][q]["ratio_mean"] for q in qs]
-        lo = [a5[m][q]["ratio_mean"] - a5[m][q]["ci95"][0] for q in qs]
-        hi = [a5[m][q]["ci95"][1] - a5[m][q]["ratio_mean"] for q in qs]
-        ax.errorbar(xpos + off, y, yerr=[lo, hi], fmt="o", ms=5,
-                    color=C[m], capsize=2, lw=1.4, label=label)
-    yr = [g2["m3_roll64"][q.replace("p", "p")]["ratio_mean"] for q in qs]
-    ax.plot(xpos + 0.18, yr, "s--", ms=4.5, color=C["m3"], alpha=0.55,
-            lw=1.2, label="M3, rolled input")
-    ax.axhline(1.0, color=C["muted"], lw=1.0, ls=":")
-    ax.text(2.38, 1.0, "calibrated", va="center", fontsize=8, color=C["muted"])
-    ax.set_xticks(xpos, ["P90", "P99", "P99.9"])
-    ax.set_xlabel("|flux| quantile")
-    ax.set_ylabel("predicted / true quantile ratio")
-    ax.set_title("Tail calibration ladder (July 2015, physical space)")
-    ax.legend(frameon=False, fontsize=8, loc="upper left")
+    fig, axes = plt.subplots(1, 2, figsize=(8.0, 3.2), sharey=True)
+    for ax, (title, path, show_roll) in zip(axes, months):
+        a5 = load(path)["tail_ratios_pred_over_true"]
+        for off, m, label in ((-0.18, "m1", "M1 (column)"),
+                              (0.0, "m2", "M2 (3x3)"), (0.18, "m3", "M3 (U-Net)")):
+            y = [a5[m][q]["ratio_mean"] for q in qs]
+            lo = [a5[m][q]["ratio_mean"] - a5[m][q]["ci95"][0] for q in qs]
+            hi = [a5[m][q]["ci95"][1] - a5[m][q]["ratio_mean"] for q in qs]
+            ax.errorbar(xpos + off, y, yerr=[lo, hi], fmt="o", ms=5,
+                        color=C[m], capsize=2, lw=1.4, label=label)
+        if show_roll:
+            yr = [g2["m3_roll64"][q]["ratio_mean"] for q in qs]
+            ax.plot(xpos + 0.18, yr, "s--", ms=4.5, color=C["m3"], alpha=0.55,
+                    lw=1.2, label="M3, rolled input")
+        ax.axhline(1.0, color=C["muted"], lw=1.0, ls=":")
+        ax.set_xticks(xpos, ["P90", "P99", "P99.9"])
+        ax.set_xlabel("|flux| quantile")
+        ax.set_title(title, fontsize=9)
+    axes[0].set_ylabel("predicted / true quantile ratio")
+    axes[0].text(2.05, 1.03, "calibrated", fontsize=8, color=C["muted"])
+    axes[0].legend(frameon=False, fontsize=8, loc="upper left")
+    fig.suptitle("Tail calibration ladder (physical space)", fontsize=10, y=1.02)
     savefig(fig, "fig2_calibration_ladder")
 
 
@@ -109,6 +114,9 @@ def fig_seam():
     fig, ax = plt.subplots(figsize=(6.4, 3.0))
     for m, label in (("m1", "M1"), ("m2", "M2"), ("m3", "M3")):
         ax.plot(lon, z[f"month_lon_{m}"], lw=1.5, color=C[m], label=label)
+    jan = np.load(REPO / "results/a4_january/arrays/fullmonth_artifacts.npz")
+    ax.plot(lon, jan["m3_rmse_col"].mean(axis=0), lw=1.2, ls="--", color=C["m3"],
+            alpha=0.6, label="M3 (January)")
     for x0, x1 in ((0, 3 * 2.8125), (125 * 2.8125, 127 * 2.8125)):
         ax.axvspan(x0, x1, color=C["muted"], alpha=0.12, lw=0)
     ax.text(4, float(z["month_lon_m3"].max()) - 0.005, "conv padding seam",

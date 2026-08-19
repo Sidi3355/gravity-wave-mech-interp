@@ -22,7 +22,7 @@
     "arrays_dir": "results/a4_january/arrays"
   },
   "n_timesteps": 744,
-  "month": "2015-07",
+  "month": "2015-01",
   "features": "uvtheta",
   "hotspot_boxes": {
     "1andes": [
@@ -112,5 +112,6 @@
       0.01545217998566166
     ],
     "frac_timesteps_m3_better": 1.0
-  }
+  },
+  "label_correction": "month field was '2015-07' from a hardcoded script constant; corrected 2026-08-19 (critic audit); all data derives from scaling01 per config/stamp"
 }

@@ -13,3 +13,4 @@ hist_bins: 400
 checkpoint_every: 24   # timesteps between state saves
 out_dir: "results/a4_january"
 arrays_dir: "results/a4_january/arrays"   # gitignored large outputs
+month: "2015-01"

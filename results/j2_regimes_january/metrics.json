@@ -15,7 +15,7 @@
     "n_timesteps": 24,
     "out_dir": "results/j2_regimes_january"
   },
-  "hypothesis": "H-A2",
+  "hypothesis": "H-A2b January confirmation (J2)",
   "n_timesteps_for_shear": 24,
   "concentration_gap12_by_shear_top10": 1.8117931397603977,
   "concentration_gap23_by_shear_top10": 1.7708160313188472,
@@ -24,5 +24,6 @@
   "corr_gap12_shear": 0.46643295280967956,
   "corr_gap23_shear": 0.09969401151519397,
   "note_m3": "M3 comparisons carry the input-set caveat (no zs/lat/lon)",
-  "verdict": "PASS"
+  "verdict": "A2b KILLED (pre-registered confirmation: shear concentration 1.77 < 2.0)",
+  "label_correction": "hypothesis/verdict relabeled 2026-08-19 (critic audit): the script's H-A2 screening labels did not apply to the confirmation run; numbers unchanged"
 }

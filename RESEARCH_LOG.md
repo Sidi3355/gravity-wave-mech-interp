@@ -954,3 +954,28 @@ negative is BOUNDED, not absolute — this is the honest, defensible form.
 
 Stage D experimental program COMPLETE. Remaining: January figure panels,
 paper text completion, final critic pass on the draft.
+
+## [2026-08-19 09:30] LEAD + WRITER — Final critic pass applied (F1-F11)
+
+CRITIC's final draft review (results/stageD_critic/critic_final_draft.md):
+~30 numbers verified clean; 5 audit items + 11 required fixes. ALL APPLIED:
+- Stamped previously-unstamped numbers: J3 dose distributions (M1 22/28
+  positive-monotone incl. 6 anti; M3 16/28 with 12 anti; median applied
+  beta 0.40; 20/28 two-point ladders) -> j3_patchdose_january/
+  dose_distributions.json; as-is-vs-converted forensics R2 ->
+  normalization_forensics/metrics.json.
+- Label corrections in stamped files (logged in-file): a4_january month
+  field (was hardcoded 2015-07); j2_regimes_january hypothesis/verdict
+  (now A2b KILLED at confirmation). exp02 month field parameterized.
+- Draft rewritten (abstract v2): "62% of headline metric" conflation FIXED
+  (62% is of the VARIANCE ratio, stated as upper bound; Hellinger is
+  insensitive to the collapse — itself our methods point); Finding-3
+  scoped (typical columns vs hotspot centers; dose-mixed distribution
+  reported; no underived "10x" claim); funnel accounting corrected
+  (30 generated / 24 screened, 15 killed / 1 measured / 5 deferred / A2b
+  killed at confirmation); "~1500 km" -> "median 4 cells (~1200 km at
+  T42)"; robustness axis stated as confounded (checkpoint+variant, n=2);
+  multiplicity statement added; limitations extended (roll upper bound,
+  dose caps, patch-arm control coverage); attack list expanded (1b, 6).
+Verdict after fixes: READY FOR PROSE EXPANSION per critic's condition
+(F1-F8 were the blocking set; all 11 applied).

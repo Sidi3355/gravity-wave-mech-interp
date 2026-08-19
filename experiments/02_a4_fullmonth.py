@@ -236,7 +236,7 @@ def main():
                   f"eta={(n_time - t - 1) * el / done / 60:.0f}min", flush=True)
 
     # ---- final metrics
-    results = {"n_timesteps": int(n_time), "month": "2015-07",
+    results = {"n_timesteps": int(n_time), "month": CFG.get("month", "unspecified"),
                "features": feat, "hotspot_boxes": {k: list(v) for k, v in HOTSPOTS.items()},
                "models": {}}
     npz_out = {}

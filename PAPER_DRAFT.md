@@ -10,37 +10,44 @@ Every number cited here exists in a stamped results/*.json.
    Neural Gravity-Wave Surrogates
 3. A Mechanistic Audit of Nonlocality in Neural Gravity-Wave Parameterizations
 
-## Abstract (draft v1)
+## Abstract (draft v2, post final-critic F-fixes)
 Neural-network parameterizations of atmospheric gravity-wave (GW) momentum
 fluxes increasingly inform climate-model development, and horizontal
 nonlocality is credited for much of their skill. We present the first
 mechanistic interpretability study of a parameterization emulator, auditing
 the released single-column / 3x3-stencil / Attention-U-Net hierarchy of
-Gupta et al. (2025) with a pre-registered hypothesis funnel (30 hypotheses;
-25 screened, 15 killed) combining probing, activation patching, controlled
-physics grafts, and representation analysis. Three findings emerge. (1) The
-U-Net's celebrated distributional skill is largely a position-indexed
-variance prior: convolutional padding lets the network infer absolute
-position, and rolling the input map — which leaves physics unchanged —
-collapses its flux-variance calibration from 1.10 to 0.33, with 62% of
-variance calibration attributable to position — replicated on a second
-held-out month (January variance ratios 0.42/0.35/1.00).
-(2) Its genuine nonlocality is long-range (~1500+ km), isotropic, and
-regime-indexed, not wave-propagation-shaped: causal influence maps show no
-alignment with ray-traced propagation, and the paper's headline Hellinger
-metric is shown to be gameable by naive variance inflation, unlike
-quantile-ratio calibration ladders. (3) Under controlled single-aspect
-grafts of real columns — a protocol validated on a 1D testbed emulator that
-demonstrably learned its physics — the column models exhibit no
-critical-level filtering response, no drag-wind alignment, and non-monotone
-amplitude response, robust across checkpoints and input variants; at
-strong-forcing hotspot columns both models show weak but dose-monotone
-responses an order of magnitude below physical expectation — a bounded,
-not absolute, negative. These
-surrogates achieve their offline skill substantially as regime
-pattern-matchers with geographic priors rather than by encoding wave
-physics, with direct implications for out-of-distribution trust and for how
-distributional skill should be measured.
+Gupta et al. (2025) with a pre-registered hypothesis funnel: 30 hypotheses
+generated, 24 screened (15 killed), 1 measured, 5 deferred with reasons, and
+1 further killed at held-out confirmation. Three findings emerge. (1) The
+U-Net's variance and extreme-tail calibration rides substantially on a
+position-indexed prior: convolutional padding lets the network infer
+absolute position, and rolling the input map — which changes no physics —
+collapses its flux-variance calibration from 1.10 to 0.33. Roll ensembles
+attribute up to 62% of variance calibration and 37% of extreme-tail (P99.9)
+calibration to position (an upper bound: rolling also induces off-manifold
+degradation), while bulk-quantile calibration is flow-driven; the
+calibration split replicates on a second held-out month (variance ratios
+0.42/0.35/1.00). Notably, pooled-histogram Hellinger distance — the
+literature's headline distributional metric — is insensitive to this
+collapse and can even be improved by physically absurd variance inflation;
+quantile-ratio ladders discriminate. (2) The U-Net's causally used context
+is long-range (median 4 grid cells, ~1200 km at T42, up to >16) but
+isotropic and unaligned with ray-traced propagation directions. (3) Under
+single-aspect grafts of real columns — a protocol whose amplitude family is
+validated without conditions on a 1D testbed emulator that demonstrably
+learned its physics (response tracking 0.94 there vs 0.49 here) — the
+column models show no filtering response at typical columns, drag that
+ignores wind rotation, and non-monotone amplitude response, consistent
+across the released uvtheta and uvthetaw checkpoints (a confounded
+checkpoint-plus-input-variant axis; no seed ensembles exist). At
+strong-forcing hotspot centers, weak partial-dose responses appear
+(medians 0.09-0.13 at median applied dose beta ~ 0.4, with 12/28 U-Net
+patches anti-monotone) — far short of the near-complete flux removal linear
+theory prescribes at a full critical level, though we do not derive
+per-patch quantitative expectations. These surrogates achieve much of their
+offline skill as regime pattern-matchers with geographic priors rather than
+by encoding wave physics, with direct implications for out-of-distribution
+trust and for how distributional skill should be measured.
 
 ## 1. Introduction
 - GW parameterization problem; ML emulators lineage (Espinosa 2022; Hardiman
@@ -74,6 +81,12 @@ al. 2020) — newly relevant to scientific surrogates.
   one-line evidence) — from HYPOTHESIS_TABLE.md.
 - Screening discipline: <20 min/test, thresholds pre-registered, critic
   passes, deviations logged.
+- Multiple comparisons: every test run is reported in the funnel table
+  (winners and losers alike); confirmation-month tests were limited to a
+  pre-registered four-entry ledger (J1-J4) logged before the January file
+  was opened; no correction applied within screening (verdicts are
+  per-hypothesis pre-registered thresholds, not p-values), and the full
+  family of outcomes is disclosed.
 
 ## 5. Finding 1: a position-indexed variance prior
 - P4 seam + roll degradation (+15% global RMSE under roll).
@@ -82,8 +95,10 @@ al. 2020) — newly relevant to scientific surrogates.
   symmetric roll-distance curve; hotspot-concentrated (1.29 -> 0.24).
 - R2: encoder DISCARDS linearly-readable orography (selectivity -0.39) —
   the geography channel is positional, not reconstructed from flow.
-- Mechanism statement: tail calibration implemented largely as a
-  position-indexed variance prior over climatological hotspots.
+- Mechanism statement: variance and extreme-tail calibration implemented
+  substantially (up to 62% / 37%, upper bounds) as a position-indexed
+  variance prior over climatological hotspots; bulk calibration (P90 share
+  2.5%) is flow-driven.
 - January confirmation (J1/J4): variance ratios 0.419/0.351/0.996 (vs July
   0.360/0.363/1.066); seam excess +5.05% (vs +5.1%). Depth-resolved
   localization (roll-patching, exact identity control): position code enters
@@ -111,11 +126,15 @@ al. 2020) — newly relevant to scientific surrogates.
 - M1: suppression -0.008 (July uvtheta, n=289), +0.043 (Aug uvthetaw,
   n=284); amplitude Spearman 0.49 (both variants); drag-wind alignment
   circular corr 0.22 (135 admissible rotations).
-- Patch grafts at hotspot centers (January, 28 admissible patches):
-  dose-monotone suppression in BOTH models (M3 0.125, Spearman 0.90; paired
-  M1 0.092, Spearman 1.00) — an order of magnitude below the physical
-  expectation that a critical level largely eliminates upward flux. July
-  preliminary agreed (0.146, n=10). Typical columns: no response.
+- Patch grafts at hotspot centers (January, 28 admissible patches; stamped
+  dose distributions in j3_patchdose_january/dose_distributions.json):
+  median suppression M3 0.125 / paired M1 0.092 at max applied dose (median
+  applied beta 0.40; 20/28 ladders have only 2 distinct doses). Dose
+  direction: M1 22/28 positive-monotone (6 anti), M3 16/28 (12 anti) —
+  a weak, partial-dose, direction-mixed response, far short of the
+  near-complete flux removal linear theory prescribes at a full critical
+  level (per-patch quantitative expectations not derived; limitation).
+  July preliminary agreed (0.146, n=10). Typical columns: no response.
 - R1/R5: no linearly-readable N^2/Ri/sign intermediates; R6: flux
   crystallizes in last layers.
 - F1: cross-architecture failure co-occurrence 38-53x chance (shared
@@ -132,7 +151,15 @@ al. 2020) — newly relevant to scientific surrogates.
   variants + (for probes) epoch pairs; no seed ensembles exist.
 - ERA5's own unresolved GW fraction bounds achievable "physics".
 - Synthetic/graft external validity: OOD-policed but grafts break physical
-  balance; positive control is 1D and column-local.
+  balance; positive control is 1D and column-local, covers the column-model
+  arms (amplitude family unconditionally; reflection family only where the
+  true effect is detectable, a conditioning that cannot be applied in ERA5
+  where ground truth is unknown), and does NOT cover the U-Net patch arm.
+- Roll-based position attribution is an UPPER bound: rolling both removes
+  the position code and moves inputs off-manifold; the two effects are not
+  separable with one released checkpoint.
+- J3 dose-response is partial-dose (admissibility caps; median applied
+  beta 0.40) with 2-point ladders in 20/28 patches.
 - 2015 months served as the anchor's validation year (epoch selection).
 
 ## 9. Reproducibility statement
@@ -142,15 +169,30 @@ reproduce-figures [TODO Stage E].
 
 ## Reviewer-attack list (living)
 1. "Grafts are OOD, nulls are meaningless" -> OOD policing + qbo1d positive
-   control + partial-graft rule; P2's 145/280 exclusions disclosed.
+   control (amplitude family unconditional: 0.94 there vs 0.49 here) +
+   partial-graft rule; P2's 145/280 exclusions disclosed.
+1b. "Your 'weak response' has no quantitative physical benchmark" -> honest:
+   per-patch expectations not derived; claims scoped to partial-dose grafts
+   and the qualitative prescription of near-complete removal at full
+   critical levels; deriving ray-tracer-based per-patch expectations is
+   stated future work.
 2. "One checkpoint, overgeneralization" -> variant robustness, scoped claims.
 3. "Position encoding is trivial/known" -> known in vision (Islam 2020),
-   unmeasured in scientific surrogates; here it carries 62% of the headline
-   distributional-skill metric — a quantified, consequential finding.
+   unmeasured in scientific surrogates; here it carries up to 62% of
+   variance calibration (the discriminating ladder metric) — while the
+   literature's Hellinger headline is INSENSITIVE to the collapse
+   (0.0745 -> 0.0744 under roll), which is itself our methods finding.
 4. "Hellinger critique unfair" -> demonstrated constructively (rescaled-M2).
 5. "Roll tests confound geography with position" -> zs channel identical
    across files; M1/M2 roll-invariant/equivariant controls carry geography;
-   only M3 degrades.
+   only M3 degrades. Position share stated as an UPPER bound (roll also
+   induces off-manifold degradation); corroborated independently by the
+   symmetric roll-distance curve, bottleneck/decoder localization with an
+   exact identity control, and hotspot concentration.
+6. "The positive control does not cover the U-Net patch arm" -> correct and
+   disclosed; the patch-arm result is reported as bounded/descriptive, and
+   the load-bearing audit null is the unconditionally-validated amplitude
+   family on column models.
 
 ## Figures plan (scripts to be numbered in experiments/)
 F1 funnel diagram; F2 calibration ladders + roll collapse; F3 roll-distance

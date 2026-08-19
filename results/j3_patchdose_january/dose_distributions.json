@@ -1,0 +1,27 @@
+{
+  "stamp": {
+    "config_hash": "44136fa355b3",
+    "seed": 0,
+    "timestamp_utc": "2026-08-19T00:32:23+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {},
+  "addendum": "J3 dose-response distributions (critic F4/audit-1)",
+  "m1_dose_spearman": {
+    "median": 1.0,
+    "n_positive_monotone": 22,
+    "n_anti_monotone": 6,
+    "n": 28
+  },
+  "m3_dose_spearman": {
+    "median": 0.8999999999999999,
+    "n_positive_monotone": 16,
+    "n_anti_monotone": 12,
+    "n": 28
+  },
+  "n_ladders_with_only_2_distinct_doses": 20,
+  "median_applied_beta": 0.39999999999999947
+}

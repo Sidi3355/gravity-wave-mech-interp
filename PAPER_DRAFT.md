@@ -1,9 +1,7 @@
 # PAPER_DRAFT.md — working draft (Stage D in progress)
 
-Status: skeleton + results-anchored section drafts. Items marked [PENDING-Jx]
-await the pre-registered January 2015 confirmations (multiplicity ledger,
-RESEARCH_LOG 2026-08-18 23:56). Every number cited here exists in a stamped
-results/*.json.
+Status: results-complete draft (all January confirmations integrated).
+Every number cited here exists in a stamped results/*.json.
 
 ## Title candidates
 1. What Do Neural Gravity-Wave Parameterizations Actually Learn? A
@@ -25,7 +23,8 @@ U-Net's celebrated distributional skill is largely a position-indexed
 variance prior: convolutional padding lets the network infer absolute
 position, and rolling the input map — which leaves physics unchanged —
 collapses its flux-variance calibration from 1.10 to 0.33, with 62% of
-variance calibration attributable to position [PENDING-J1 confirmation].
+variance calibration attributable to position — replicated on a second
+held-out month (January variance ratios 0.42/0.35/1.00).
 (2) Its genuine nonlocality is long-range (~1500+ km), isotropic, and
 regime-indexed, not wave-propagation-shaped: causal influence maps show no
 alignment with ray-traced propagation, and the paper's headline Hellinger
@@ -34,8 +33,10 @@ quantile-ratio calibration ladders. (3) Under controlled single-aspect
 grafts of real columns — a protocol validated on a 1D testbed emulator that
 demonstrably learned its physics — the column models exhibit no
 critical-level filtering response, no drag-wind alignment, and non-monotone
-amplitude response, robust across checkpoints and input variants; the U-Net
-shows only a faint trace of filtering-like response [PENDING-J3]. These
+amplitude response, robust across checkpoints and input variants; at
+strong-forcing hotspot columns both models show weak but dose-monotone
+responses an order of magnitude below physical expectation — a bounded,
+not absolute, negative. These
 surrogates achieve their offline skill substantially as regime
 pattern-matchers with geographic priors rather than by encoding wave
 physics, with direct implications for out-of-distribution trust and for how
@@ -82,13 +83,18 @@ al. 2020) — newly relevant to scientific surrogates.
   the geography channel is positional, not reconstructed from flow.
 - Mechanism statement: tail calibration implemented largely as a
   position-indexed variance prior over climatological hotspots.
-- [PENDING-J1] January confirmation; depth-resolved localization (where
-  position enters) planned.
+- January confirmation (J1/J4): variance ratios 0.419/0.351/0.996 (vs July
+  0.360/0.363/1.066); seam excess +5.05% (vs +5.1%). Depth-resolved
+  localization (roll-patching, exact identity control): position code enters
+  at the bottleneck (conv5 ~48%) and decoder (~39%); early encoder ~0.
 
 ## 6. Finding 2: what the nonlocality is (and is not)
 - I4 occlusion radius (median 4, up to >16 cells) vs N5 isotropy (ratio
-  1.07, alignment 9/20) vs A2b shear concentration 2.92 / orographic 0.27
-  [PENDING-J2].
+  1.07, alignment 9/20). Two-month regime pattern: shear concentration 2.92
+  (July) / 1.77 (January), orographic 0.27 / -0.73 — directionally
+  consistent, quantitatively variable; A2b's pre-registered confirmation
+  threshold (>=2.0) failed, so this is reported descriptively, not as a
+  confirmed claim.
 - I2 clamp (-0.70 recovery), I1/I3/A1/A4 kills: the full multivariate
   neighborhood is consumed; no simple carrier.
 - Gates: causally live at finest scale (+4.3%) but flux-uncorrelated
@@ -104,8 +110,11 @@ al. 2020) — newly relevant to scientific surrogates.
 - M1: suppression -0.008 (July uvtheta, n=289), +0.043 (Aug uvthetaw,
   n=284); amplitude Spearman 0.49 (both variants); drag-wind alignment
   circular corr 0.22 (135 admissible rotations).
-- M3 patch grafts: +0.146 median suppression (n=10, preliminary)
-  [PENDING-J3: expanded patches + beta dose-response].
+- Patch grafts at hotspot centers (January, 28 admissible patches):
+  dose-monotone suppression in BOTH models (M3 0.125, Spearman 0.90; paired
+  M1 0.092, Spearman 1.00) — an order of magnitude below the physical
+  expectation that a critical level largely eliminates upward flux. July
+  preliminary agreed (0.146, n=10). Typical columns: no response.
 - R1/R5: no linearly-readable N^2/Ri/sign intermediates; R6: flux
   crystallizes in last layers.
 - F1: cross-architecture failure co-occurrence 38-53x chance (shared

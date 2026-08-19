@@ -1,4 +1,4 @@
-# PAPER_DRAFT.md — working draft (Stage D in progress)
+# PAPER_DRAFT.md — working draft (Stage D complete; prose expansion pending)
 
 Status: results-complete draft (all January confirmations integrated).
 Every number cited here exists in a stamped results/*.json.
@@ -61,10 +61,11 @@ al. 2020) — newly relevant to scientific surrogates.
 ## 3. Models, data, and the released-artifact setting
 - Tier-1 setting: released checkpoints (M1/M2/M3), released code, held-out
   2015 months; one checkpoint per config (limitation).
-- REPRODUCIBILITY FINDING (standalone value): WxC-Bench monthly files are
-  per-month re-normalized and 1x-sigma-scaled despite identical metadata
-  wording; feeding them to the released checkpoints as-is yields R^2 of -4
-  to -81. Exact conversion derived and validated (consecutive-hour test).
+- REPRODUCIBILITY FINDING (standalone value): all WxC-Bench monthly files
+  share ONE alternative normalization (different constants AND a 1x-sigma
+  u/v convention despite metadata claiming 3x); feeding them to the released
+  checkpoints as-is yields R^2 of -4 to -81. A single exact conversion,
+  validated by a consecutive-hour test and a skill gate, fixes all months.
 - A4 replication: full-July ordering M3<M2<M1 on RMSE and Hellinger, M3
   better than M2 in 744/744 paired timesteps.
 

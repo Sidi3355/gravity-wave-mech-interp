@@ -1,0 +1,19 @@
+{
+  "stamp": {
+    "config_hash": "44136fa355b3",
+    "seed": 0,
+    "timestamp_utc": "2026-08-19T00:17:50+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {},
+  "experiment": "J4 seam replication (January)",
+  "seam_excess": {
+    "m1": -0.012789815509462121,
+    "m2": -0.00823537488481274,
+    "m3": 0.050538421766284314
+  },
+  "replicates": true
+}

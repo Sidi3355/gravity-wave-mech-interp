@@ -1,0 +1,3 @@
+source_file: "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling01.nc"
+n_timesteps: 6
+out_dir: "results/j3_patchdose_january"

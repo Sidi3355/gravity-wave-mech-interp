@@ -335,7 +335,7 @@ NEW CONTROL ENTRIES
   Pahlavan-style ERF analysis; establishes T4 baseline before any T4 claims.
 
 NEW (generated during screening, 2026-08-18)
-- H-A2b [GEN, confirmation deferred to January/Stage-D data — born from H-A2's
+- H-A2b [KILLED at January confirmation 2026-08-19: shear conc 1.77 < 2.0; directional anti-orographic pattern replicates and is reported descriptively] [GEN, confirmation deferred to January/Stage-D data — born from H-A2's
   screening data, no double-use]: M3's advantage over M2 concentrates in
   high-shear (storm-track/jet) regimes (July concentration 2.92) and is
   absent-to-negative over orography (0.27); mechanism candidate: lateral

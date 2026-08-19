@@ -1,0 +1,28 @@
+{
+  "stamp": {
+    "config_hash": "0ba09ee932cd",
+    "seed": 0,
+    "timestamp_utc": "2026-08-19T00:17:47+00:00",
+    "torch": "2.13.0+cpu",
+    "numpy": "2.4.6",
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "config": {
+    "seed": 0,
+    "source_file": "C:/Users/sidi0/gwmi_data/era5_monthly/inputfeatures_u_v_theta_uw_vw_era5_training_data_hourly_2015_constant_mu_sigma_scaling01.nc",
+    "month_artifacts": "results/a4_january/arrays/fullmonth_artifacts.npz",
+    "n_timesteps": 24,
+    "out_dir": "results/j2_regimes_january"
+  },
+  "hypothesis": "H-A2",
+  "n_timesteps_for_shear": 24,
+  "concentration_gap12_by_shear_top10": 1.8117931397603977,
+  "concentration_gap23_by_shear_top10": 1.7708160313188472,
+  "concentration_gap12_by_oroggrad_top10": 1.155167464526045,
+  "concentration_gap23_by_oroggrad_top10": -0.7268920036771609,
+  "corr_gap12_shear": 0.46643295280967956,
+  "corr_gap23_shear": 0.09969401151519397,
+  "note_m3": "M3 comparisons carry the input-set caveat (no zs/lat/lon)",
+  "verdict": "PASS"
+}

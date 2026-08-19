@@ -922,3 +922,35 @@ IDENTICAL to July's — the WxC monthly files share ONE alternative convention
 community advisory: a single conversion handles all WxC nonlocal_
 parameterization files. January skill runs higher than July (NH winter).
 Launching J1 (full-month eval); J2-J4 follow sequentially.
+
+## [2026-08-19 08:20] EXPERIMENTALIST + LEAD — JANUARY CONFIRMATIONS COMPLETE (J1-J4)
+
+J1 (results/a4_january/) CONFIRMED: orderings hold on RMSE + Hellinger
+(area-weighted too); M3 > M2 in 744/744 paired timesteps (CI [.0150,.0155]);
+variance ratios M1 0.419 / M2 0.351 / M3 0.996 — the calibration split
+replicates almost exactly (July 0.360/0.363/1.066). D1's headline is
+month-robust.
+
+J2: A2b KILLED per its own pre-registered criterion (January shear
+concentration 1.77 < 2.0). The DIRECTIONAL pattern replicates and even
+sharpens: anti-orographic concentration -0.73 (M3 worse than M2 over steep
+terrain in January; July 0.27), shear concentration elevated both months
+(2.92 / 1.77). Seasonal variability real (M1->M2 shear conc: July 1.38,
+January 1.81 — would have passed A2's threshold in January). Paper reports
+the two-month pattern descriptively; no confirmed A2b claim.
+
+J4 CONFIRMED: M3 seam excess +5.05% in January (+5.1% July); M1 -1.3%,
+M2 -0.8%. The padding-seam artifact is month-robust.
+
+J3 (results/j3_patchdose_january/, 28 admissible patches): M3 patch-graft
+suppression 0.125 at full graft (July 0.146) with DOSE-MONOTONE response
+(median Spearman 0.90). Paired M1 arm on the same hotspot-center columns:
+suppression 0.092, dose Spearman 1.00. REFINEMENT OF THE AUDIT CONCLUSION:
+at strong-forcing hotspot columns both models exhibit weak, dose-systematic
+filtering-like responses (~an order of magnitude below physical expectation:
+a true critical level should largely eliminate upward flux); at typical
+columns responses are absent (arm1/arm2 medians ~0). The trust-audit
+negative is BOUNDED, not absolute — this is the honest, defensible form.
+
+Stage D experimental program COMPLETE. Remaining: January figure panels,
+paper text completion, final critic pass on the draft.
